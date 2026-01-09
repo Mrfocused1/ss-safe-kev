@@ -75,11 +75,27 @@
     <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference text-luxury-base pointer-events-none" aria-label="Site navigation">
+    <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 mix-blend-difference text-luxury-base pointer-events-none" aria-label="Site navigation">
         <a href="#hero" class="uppercase tracking-[0.3em] text-xs font-bold pointer-events-auto" aria-label="Sickle Safe - Home">
             Sickle Safe
         </a>
+        <!-- Menu Button -->
+        <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto hover:text-luxury-accent transition-colors" aria-label="Open menu">
+            Menu
+        </button>
     </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+        <button id="menu-close" class="menu-close" aria-label="Close menu">Close</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="problem.html">The Problem</a>
+            <a href="#services-wrapper">Services</a>
+            <a href="#crisis">Emergency Protocol</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+    </div>
 
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-luxury-dark text-white rounded-full flex items-center justify-center z-50 opacity-0 pointer-events-none transition-all duration-300 hover:bg-luxury-accent hover:scale-110 shadow-lg" aria-label="Scroll to top">
