@@ -1102,3 +1102,126 @@ select:focus-visible {
 .anim-id-phone {
     animation: idScreenGlow 3s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   Problem Page - Scroll Journey Styles
+   ========================================================================== */
+
+/* Hero section initial states */
+.problem-badge,
+.problem-title,
+.problem-subtitle,
+.scroll-indicator {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Chapter header initial states */
+.chapter-badge,
+.chapter-title,
+.chapter-subtitle {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+/* Journey step initial states */
+.journey-step {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Journey dot styles */
+.journey-dot {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1);
+}
+
+.journey-dot.filled {
+    background-color: #8B0000 !important;
+}
+
+/* Stat card styles */
+.stat-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Stat number animation placeholder */
+.stat-number {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Funding callout */
+.funding-callout {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Solution CTA */
+.solution-cta {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Scroll indicator bounce animation */
+.scroll-indicator svg {
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* Problem page responsive adjustments */
+@media (max-width: 768px) {
+    .journey-chapter {
+        margin-bottom: 6rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+
+    .stat-suffix {
+        font-size: 1.5rem;
+    }
+
+    .funding-callout {
+        padding: 1.5rem;
+    }
+
+    .funding-callout p.font-serif {
+        font-size: 1.25rem;
+    }
+}
+
+/* Journey line glow effect on mobile */
+@media (max-width: 768px) {
+    #journey-line-fill {
+        box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+    }
+}
+
+/* Ensure proper stacking on the problem page */
+#problem-journey {
+    isolation: isolate;
+}
+
+/* Problem hero background gradient overlay */
+#problem-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(26, 26, 26, 0.8) 100%);
+    pointer-events: none;
+}
