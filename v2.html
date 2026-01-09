@@ -28,8 +28,8 @@
     </script>
     <style>
         body {
-            background-color: #111;
-            color: white;
+            background-color: #E8E8E3;
+            color: #1a1a1a;
             overflow: hidden;
         }
 
@@ -37,13 +37,13 @@
         #app-container {
             max-width: 420px;
             margin: 0 auto;
-            background-color: #1a1a1a;
+            background-color: #F5F5F0;
             height: 100dvh;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0,0,0,0.15);
         }
 
         /* --- Slide Logic --- */
@@ -319,8 +319,13 @@
         }
 
         .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #1a1a1a; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #E8E8E3; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+
+        /* Light theme SVG adjustments */
+        .svg-bg { fill: #EAEAEA; }
+        .svg-stroke { stroke: #D0D0D0; }
+        .svg-fill-light { fill: #E0E0E0; }
     </style>
 </head>
 <body>
@@ -328,7 +333,7 @@
     <div id="app-container">
 
         <!-- Progress Bar -->
-        <div class="absolute top-0 left-0 w-full h-1 bg-charcoal z-20">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gray-200 z-20">
             <div id="progress-line" class="h-full bg-accent transition-all duration-500 ease-out" style="width: 25%"></div>
         </div>
 
@@ -338,19 +343,19 @@
             <!-- ==================== SLIDE 1: Download & Choose Role ==================== -->
             <div class="slide active" id="slide-0">
                 <div class="mb-8 w-52 h-52 relative flex items-center justify-center">
-                    <svg viewBox="0 0 200 200" class="w-full h-full">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
                         <!-- Outer glow ring -->
-                        <circle cx="100" cy="100" r="90" fill="none" stroke="#333" stroke-width="1" opacity="0.5" />
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#D0D0D0" stroke-width="1" opacity="0.5" />
 
                         <!-- Phone body -->
                         <g class="anim-phone">
-                            <rect x="70" y="50" width="60" height="100" rx="8" fill="#222" stroke="#8B0000" stroke-width="2"/>
+                            <rect x="70" y="50" width="60" height="100" rx="8" fill="white" stroke="#8B0000" stroke-width="2"/>
                             <!-- Screen -->
-                            <rect x="75" y="60" width="50" height="75" rx="2" fill="#333"/>
+                            <rect x="75" y="60" width="50" height="75" rx="2" fill="#F0F0F0"/>
                             <!-- Home button -->
-                            <circle cx="100" cy="142" r="4" fill="#444" stroke="#8B0000" stroke-width="1"/>
+                            <circle cx="100" cy="142" r="4" fill="#E0E0E0" stroke="#8B0000" stroke-width="1"/>
                             <!-- App icon on screen -->
-                            <rect x="88" y="85" width="24" height="24" rx="4" fill="#8B0000" opacity="0.8"/>
+                            <rect x="88" y="85" width="24" height="24" rx="4" fill="#8B0000"/>
                             <text x="100" y="102" font-family="serif" font-size="14" fill="white" text-anchor="middle">S</text>
                             <!-- Download arrow -->
                             <g class="anim-download">
@@ -361,27 +366,27 @@
                         <!-- Orbiting Role Icons -->
                         <!-- Heart (Patient/Overcomer) -->
                         <g class="anim-orbit-1">
-                            <circle cx="100" cy="100" r="14" fill="#2d2d2d" stroke="#8B0000" stroke-width="1.5"/>
+                            <circle cx="100" cy="100" r="14" fill="white" stroke="#8B0000" stroke-width="1.5"/>
                             <path d="M100,96 C97,93 93,93 93,97 C93,101 100,106 100,106 C100,106 107,101 107,97 C107,93 103,93 100,96" fill="#8B0000"/>
                         </g>
 
                         <!-- Hands (Caregiver/Helper) -->
                         <g class="anim-orbit-2">
-                            <circle cx="100" cy="100" r="14" fill="#2d2d2d" stroke="#8B0000" stroke-width="1.5"/>
+                            <circle cx="100" cy="100" r="14" fill="white" stroke="#8B0000" stroke-width="1.5"/>
                             <path d="M95,102 C95,98 97,96 100,96 C103,96 105,98 105,102 M93,100 L95,102 M107,100 L105,102" stroke="#8B0000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                         </g>
 
                         <!-- Star (Volunteer) -->
                         <g class="anim-orbit-3">
-                            <circle cx="100" cy="100" r="14" fill="#2d2d2d" stroke="#8B0000" stroke-width="1.5"/>
+                            <circle cx="100" cy="100" r="14" fill="white" stroke="#8B0000" stroke-width="1.5"/>
                             <polygon points="100,92 102,98 108,98 103,102 105,108 100,104 95,108 97,102 92,98 98,98" fill="#8B0000"/>
                         </g>
                     </svg>
                 </div>
                 <span class="text-accent text-xs tracking-[0.3em] uppercase font-semibold mb-3">Step 01</span>
-                <h2 class="text-3xl font-serif font-semibold mb-4 text-white">Download & <br><span class="accent-gradient-text italic">Choose Your Role</span></h2>
+                <h2 class="text-3xl font-serif font-semibold mb-4 text-gray-800">Download & <br><span class="accent-gradient-text italic">Choose Your Role</span></h2>
                 <div class="custom-scroll max-h-[120px] overflow-y-auto px-4">
-                    <p class="text-gray-400 font-sans font-light leading-relaxed text-sm">
+                    <p class="text-gray-500 font-sans font-light leading-relaxed text-sm">
                         Get the app on iOS or Android. Select your role — Overcomer, Helper, or Volunteer — each with a tailored experience.
                     </p>
                 </div>
@@ -390,10 +395,10 @@
             <!-- ==================== SLIDE 2: Medical ID ==================== -->
             <div class="slide" id="slide-1">
                 <div class="mb-8 w-52 h-52 relative flex items-center justify-center">
-                    <svg viewBox="0 0 200 200" class="w-full h-full">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
                         <!-- ID Card -->
                         <g class="anim-card">
-                            <rect x="35" y="40" width="130" height="120" rx="10" fill="#222" stroke="#8B0000" stroke-width="2"/>
+                            <rect x="35" y="40" width="130" height="120" rx="10" fill="white" stroke="#8B0000" stroke-width="2"/>
 
                             <!-- Header bar -->
                             <rect x="35" y="40" width="130" height="25" rx="10" fill="#8B0000"/>
@@ -401,9 +406,9 @@
                             <text x="100" y="57" font-family="sans-serif" font-size="8" fill="white" text-anchor="middle" letter-spacing="2">MEDICAL ID</text>
 
                             <!-- Profile circle -->
-                            <circle cx="65" cy="90" r="18" fill="#333" stroke="#555" stroke-width="1"/>
-                            <circle cx="65" cy="86" r="6" fill="#555"/>
-                            <path d="M53,102 Q53,94 65,94 Q77,94 77,102" fill="#555"/>
+                            <circle cx="65" cy="90" r="18" fill="#F0F0F0" stroke="#D0D0D0" stroke-width="1"/>
+                            <circle cx="65" cy="86" r="6" fill="#C0C0C0"/>
+                            <path d="M53,102 Q53,94 65,94 Q77,94 77,102" fill="#C0C0C0"/>
 
                             <!-- Blood drop icon -->
                             <g class="anim-drop" transform="translate(140, 90)">
@@ -412,14 +417,14 @@
 
                             <!-- Text lines -->
                             <g transform="translate(90, 82)">
-                                <rect class="anim-line" x="0" y="0" width="60" height="6" rx="2" fill="#444"/>
-                                <rect class="anim-line" x="0" y="12" width="45" height="6" rx="2" fill="#444"/>
-                                <rect class="anim-line" x="0" y="24" width="55" height="6" rx="2" fill="#444"/>
+                                <rect class="anim-line" x="0" y="0" width="60" height="6" rx="2" fill="#E0E0E0"/>
+                                <rect class="anim-line" x="0" y="12" width="45" height="6" rx="2" fill="#E0E0E0"/>
+                                <rect class="anim-line" x="0" y="24" width="55" height="6" rx="2" fill="#E0E0E0"/>
                             </g>
 
                             <!-- QR Code area -->
                             <g class="anim-qr" transform="translate(55, 120)">
-                                <rect x="0" y="0" width="30" height="30" fill="#333" rx="2"/>
+                                <rect x="0" y="0" width="30" height="30" fill="#F5F5F5" rx="2" stroke="#E0E0E0" stroke-width="1"/>
                                 <!-- QR pattern -->
                                 <rect x="3" y="3" width="8" height="8" fill="#8B0000"/>
                                 <rect x="19" y="3" width="8" height="8" fill="#8B0000"/>
@@ -429,16 +434,16 @@
 
                             <!-- Status badge -->
                             <g transform="translate(100, 135)">
-                                <rect x="0" y="0" width="50" height="16" rx="8" fill="#1a3d1a" stroke="#2d5a2d" stroke-width="1"/>
-                                <text x="25" y="11" font-family="sans-serif" font-size="7" fill="#4ade80" text-anchor="middle">ACTIVE</text>
+                                <rect x="0" y="0" width="50" height="16" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+                                <text x="25" y="11" font-family="sans-serif" font-size="7" fill="#166534" text-anchor="middle">ACTIVE</text>
                             </g>
                         </g>
                     </svg>
                 </div>
                 <span class="text-accent text-xs tracking-[0.3em] uppercase font-semibold mb-3">Step 02</span>
-                <h2 class="text-3xl font-serif font-semibold mb-4 text-white">Set Up Your <br><span class="accent-gradient-text italic">Medical ID</span></h2>
+                <h2 class="text-3xl font-serif font-semibold mb-4 text-gray-800">Set Up Your <br><span class="accent-gradient-text italic">Medical ID</span></h2>
                 <div class="custom-scroll max-h-[120px] overflow-y-auto px-4">
-                    <p class="text-gray-400 font-sans font-light leading-relaxed text-sm">
+                    <p class="text-gray-500 font-sans font-light leading-relaxed text-sm">
                         Enter your blood type, allergies, medications, and emergency contacts. Works offline with a scannable QR code.
                     </p>
                 </div>
@@ -447,7 +452,7 @@
             <!-- ==================== SLIDE 3: Circle of Care ==================== -->
             <div class="slide" id="slide-2">
                 <div class="mb-8 w-52 h-52 relative flex items-center justify-center">
-                    <svg viewBox="0 0 200 200" class="w-full h-full">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
                         <!-- Ripple effects -->
                         <circle class="anim-ripple" cx="100" cy="100" r="20" fill="none" stroke="#8B0000" stroke-width="1" opacity="0.5"/>
                         <circle class="anim-ripple" cx="100" cy="100" r="20" fill="none" stroke="#8B0000" stroke-width="1" opacity="0.5" style="animation-delay: 0.7s"/>
@@ -460,7 +465,7 @@
 
                         <!-- Central person (Patient) -->
                         <g class="anim-center">
-                            <circle cx="100" cy="100" r="25" fill="#2d2d2d" stroke="#8B0000" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="25" fill="white" stroke="#8B0000" stroke-width="2"/>
                             <circle cx="100" cy="93" r="8" fill="#8B0000"/>
                             <path d="M85,112 Q85,100 100,100 Q115,100 115,112" fill="#8B0000"/>
                             <!-- Heart badge -->
@@ -471,37 +476,37 @@
                         <!-- Circle members -->
                         <!-- Top -->
                         <g class="anim-member" transform="translate(100, 40)">
-                            <circle cx="0" cy="0" r="16" fill="#333" stroke="#555" stroke-width="1.5"/>
-                            <circle cx="0" cy="-4" r="5" fill="#555"/>
-                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#555"/>
+                            <circle cx="0" cy="0" r="16" fill="white" stroke="#D0D0D0" stroke-width="1.5"/>
+                            <circle cx="0" cy="-4" r="5" fill="#C0C0C0"/>
+                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#C0C0C0"/>
                         </g>
 
                         <!-- Right -->
                         <g class="anim-member" transform="translate(160, 100)">
-                            <circle cx="0" cy="0" r="16" fill="#333" stroke="#555" stroke-width="1.5"/>
-                            <circle cx="0" cy="-4" r="5" fill="#555"/>
-                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#555"/>
+                            <circle cx="0" cy="0" r="16" fill="white" stroke="#D0D0D0" stroke-width="1.5"/>
+                            <circle cx="0" cy="-4" r="5" fill="#C0C0C0"/>
+                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#C0C0C0"/>
                         </g>
 
                         <!-- Bottom -->
                         <g class="anim-member" transform="translate(100, 160)">
-                            <circle cx="0" cy="0" r="16" fill="#333" stroke="#555" stroke-width="1.5"/>
-                            <circle cx="0" cy="-4" r="5" fill="#555"/>
-                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#555"/>
+                            <circle cx="0" cy="0" r="16" fill="white" stroke="#D0D0D0" stroke-width="1.5"/>
+                            <circle cx="0" cy="-4" r="5" fill="#C0C0C0"/>
+                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#C0C0C0"/>
                         </g>
 
                         <!-- Left -->
                         <g class="anim-member" transform="translate(40, 100)">
-                            <circle cx="0" cy="0" r="16" fill="#333" stroke="#555" stroke-width="1.5"/>
-                            <circle cx="0" cy="-4" r="5" fill="#555"/>
-                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#555"/>
+                            <circle cx="0" cy="0" r="16" fill="white" stroke="#D0D0D0" stroke-width="1.5"/>
+                            <circle cx="0" cy="-4" r="5" fill="#C0C0C0"/>
+                            <path d="M-8,6 Q-8,0 0,0 Q8,0 8,6" fill="#C0C0C0"/>
                         </g>
                     </svg>
                 </div>
                 <span class="text-accent text-xs tracking-[0.3em] uppercase font-semibold mb-3">Step 03</span>
-                <h2 class="text-3xl font-serif font-semibold mb-4 text-white">Build Your <br><span class="accent-gradient-text italic">Circle of Care</span></h2>
+                <h2 class="text-3xl font-serif font-semibold mb-4 text-gray-800">Build Your <br><span class="accent-gradient-text italic">Circle of Care</span></h2>
                 <div class="custom-scroll max-h-[120px] overflow-y-auto px-4">
-                    <p class="text-gray-400 font-sans font-light leading-relaxed text-sm">
+                    <p class="text-gray-500 font-sans font-light leading-relaxed text-sm">
                         Invite family, friends, and caregivers. Assign roles and permissions so the right people get the right alerts.
                     </p>
                 </div>
@@ -510,14 +515,14 @@
             <!-- ==================== SLIDE 4: Track & Stay Protected ==================== -->
             <div class="slide" id="slide-3">
                 <div class="mb-8 w-52 h-52 relative flex items-center justify-center">
-                    <svg viewBox="0 0 200 200" class="w-full h-full">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
                         <!-- Shield -->
                         <g class="anim-shield">
                             <path d="M100,30 L160,50 L160,110 Q160,160 100,180 Q40,160 40,110 L40,50 Z"
-                                  fill="#222" stroke="#8B0000" stroke-width="2.5"/>
+                                  fill="white" stroke="#8B0000" stroke-width="2.5"/>
                             <!-- Inner shield highlight -->
                             <path d="M100,45 L145,60 L145,105 Q145,145 100,162 Q55,145 55,105 L55,60 Z"
-                                  fill="none" stroke="#333" stroke-width="1"/>
+                                  fill="none" stroke="#E8E8E8" stroke-width="1"/>
                         </g>
 
                         <!-- Heart rate line -->
@@ -527,18 +532,18 @@
 
                         <!-- Checkmarks -->
                         <g class="anim-check" transform="translate(70, 70)">
-                            <circle cx="0" cy="0" r="10" fill="#1a3d1a"/>
-                            <path d="M-4,0 L-1,3 L5,-4" stroke="#4ade80" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="0" cy="0" r="10" fill="#dcfce7"/>
+                            <path d="M-4,0 L-1,3 L5,-4" stroke="#166534" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
 
                         <g class="anim-check" transform="translate(130, 70)">
-                            <circle cx="0" cy="0" r="10" fill="#1a3d1a"/>
-                            <path d="M-4,0 L-1,3 L5,-4" stroke="#4ade80" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="0" cy="0" r="10" fill="#dcfce7"/>
+                            <path d="M-4,0 L-1,3 L5,-4" stroke="#166534" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
 
                         <g class="anim-check" transform="translate(100, 140)">
-                            <circle cx="0" cy="0" r="10" fill="#1a3d1a"/>
-                            <path d="M-4,0 L-1,3 L5,-4" stroke="#4ade80" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="0" cy="0" r="10" fill="#dcfce7"/>
+                            <path d="M-4,0 L-1,3 L5,-4" stroke="#166534" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
 
                         <!-- Bell icon (top right) -->
@@ -549,9 +554,9 @@
                     </svg>
                 </div>
                 <span class="text-accent text-xs tracking-[0.3em] uppercase font-semibold mb-3">Step 04</span>
-                <h2 class="text-3xl font-serif font-semibold mb-4 text-white">Track & Stay <br><span class="accent-gradient-text italic">Protected</span></h2>
+                <h2 class="text-3xl font-serif font-semibold mb-4 text-gray-800">Track & Stay <br><span class="accent-gradient-text italic">Protected</span></h2>
                 <div class="custom-scroll max-h-[120px] overflow-y-auto px-4">
-                    <p class="text-gray-400 font-sans font-light leading-relaxed text-sm">
+                    <p class="text-gray-500 font-sans font-light leading-relaxed text-sm">
                         Log daily wellness — pain, hydration, medications, mood. When crisis hits, one tap alerts your entire circle with your location.
                     </p>
                 </div>
@@ -560,22 +565,22 @@
         </div>
 
         <!-- Footer -->
-        <div class="bg-matte/95 backdrop-blur-md border-t border-charcoal p-6 flex flex-col items-center z-50">
+        <div class="bg-white/95 backdrop-blur-md border-t border-gray-200 p-6 flex flex-col items-center z-50">
 
             <!-- Dots -->
             <div class="flex gap-3 mb-6">
-                <div class="dot w-2 h-2 rounded-full bg-charcoal border border-gray-600 active" id="dot-0"></div>
-                <div class="dot w-2 h-2 rounded-full bg-charcoal border border-gray-600" id="dot-1"></div>
-                <div class="dot w-2 h-2 rounded-full bg-charcoal border border-gray-600" id="dot-2"></div>
-                <div class="dot w-2 h-2 rounded-full bg-charcoal border border-gray-600" id="dot-3"></div>
+                <div class="dot w-2 h-2 rounded-full bg-gray-200 border border-gray-300 active" id="dot-0"></div>
+                <div class="dot w-2 h-2 rounded-full bg-gray-200 border border-gray-300" id="dot-1"></div>
+                <div class="dot w-2 h-2 rounded-full bg-gray-200 border border-gray-300" id="dot-2"></div>
+                <div class="dot w-2 h-2 rounded-full bg-gray-200 border border-gray-300" id="dot-3"></div>
             </div>
 
             <!-- Button -->
-            <button id="next-btn" onclick="nextSlide()" class="w-full bg-accent hover:bg-accentLight active:bg-accentDark transition-colors duration-200 text-white font-sans font-medium text-sm uppercase tracking-[0.2em] py-4 rounded-sm shadow-[0_0_20px_rgba(139,0,0,0.2)]">
+            <button id="next-btn" onclick="nextSlide()" class="w-full bg-accent hover:bg-accentLight active:bg-accentDark transition-colors duration-200 text-white font-sans font-medium text-sm uppercase tracking-[0.2em] py-4 rounded-sm shadow-[0_0_20px_rgba(139,0,0,0.15)]">
                 Next Step
             </button>
 
-            <button onclick="location.href='index.html'" class="mt-4 text-xs text-gray-500 font-sans uppercase tracking-widest hover:text-accent transition-colors">
+            <button onclick="location.href='index.html'" class="mt-4 text-xs text-gray-400 font-sans uppercase tracking-widest hover:text-accent transition-colors">
                 Back to Home
             </button>
         </div>
