@@ -102,7 +102,7 @@
 
         <!-- HERO SECTION -->
         <section id="problem-hero" class="min-h-screen w-full relative flex items-center justify-center overflow-hidden bg-luxury-dark">
-            <div class="container mx-auto px-8 text-center relative z-10">
+            <div class="container mx-auto px-8 text-center relative z-10 pb-24 md:pb-0">
                 <span class="problem-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6 opacity-0">Understanding the Crisis</span>
                 <h1 class="problem-title font-serif text-5xl md:text-7xl lg:text-8xl text-luxury-base mb-6 opacity-0">
                     The Problem
@@ -110,15 +110,15 @@
                 <p class="problem-subtitle font-sans text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0">
                     Sickle Cell Disease affects millions worldwide. Here's what we're up against.
                 </p>
+            </div>
 
-                <!-- Scroll indicator -->
-                <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 scroll-indicator opacity-0">
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-gray-500 text-xs uppercase tracking-widest">Scroll to explore</span>
-                        <svg class="w-6 h-6 text-luxury-accent animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                    </div>
+            <!-- Scroll indicator - positioned relative to section -->
+            <div class="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 scroll-indicator opacity-0 z-20">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-gray-500 text-xs uppercase tracking-widest">Scroll to explore</span>
+                    <svg class="w-6 h-6 text-luxury-accent animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
                 </div>
             </div>
 
