@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sickle Safe | Your Sickle Cell Companion</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sickle Safe is a mobile app designed for the Sickle Cell community. Connect patients, caregivers, volunteers, and organizations in one ecosystem. Join early access.">
+    <meta name="keywords" content="sickle cell, sickle cell app, health management, patient care, crisis alert, caregiver app, sickle cell disease, SCD">
+    <meta name="author" content="Sickle Safe">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sicklesafe.com/">
+    <meta property="og:title" content="Sickle Safe | Your Sickle Cell Companion">
+    <meta property="og:description" content="The mobile app connecting patients, caregivers, volunteers, and organizations. Manage. Monitor. Thrive.">
+    <meta property="og:image" content="assets/images/hero.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sickle Safe | Your Sickle Cell Companion">
+    <meta name="twitter:description" content="The mobile app for the Sickle Cell community.">
+    <meta name="twitter:image" content="assets/images/hero.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            base: '#F5F5F0',
+                            dark: '#1A1A1A',
+                            accent: '#8B0000',
+                            text: '#2C2C2C',
+                            concrete: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .role-card {
+            transition: all 0.3s ease;
+        }
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .feature-tab.active {
+            background-color: #8B0000;
+            color: white;
+        }
+        .feature-content {
+            display: none;
+        }
+        .feature-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Skip Link - Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <button id="menu-close" class="menu-close" aria-label="Close menu">Close</button>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Main Site</a>
+            <a href="#hero">Home</a>
+            <a href="#problem">The Problem</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#early-access">Early Access</a>
+        </nav>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference text-luxury-base pointer-events-none" aria-label="Site navigation">
+        <a href="#hero" class="uppercase tracking-[0.3em] text-xs font-bold pointer-events-auto" aria-label="Sickle Safe - Home">
+            Sickle Safe
+        </a>
+        <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs pointer-events-auto cursor-pointer hover:text-luxury-accent transition-colors bg-transparent border-none" aria-label="Open navigation menu" aria-expanded="false" aria-controls="menu-overlay">
+            Menu
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="min-h-screen w-full relative flex items-center justify-center overflow-hidden bg-luxury-base">
+            <div class="container mx-auto px-8 py-24 flex flex-col lg:flex-row items-center gap-16">
+
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left">
+                    <span class="hero-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Coming Soon to iOS & Android</span>
+                    <h1 class="hero-title font-serif text-5xl md:text-7xl text-luxury-text tracking-tight leading-tight mb-6">
+                        Your Sickle Cell<br><span class="italic text-luxury-accent">Companion</span>
+                    </h1>
+                    <p class="hero-subtitle font-sans text-lg text-gray-600 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                        Manage. Monitor. Thrive. The mobile app connecting patients, caregivers, volunteers, and organizations in one powerful ecosystem.
+                    </p>
+
+                    <!-- Early Access Form -->
+                    <form id="hero-form" class="hero-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto lg:mx-0">
+                        <input type="email"
+                               placeholder="Enter your email"
+                               required
+                               class="flex-1 px-6 py-4 border border-gray-300 text-sm focus:border-luxury-accent focus:outline-none transition-colors">
+                        <button type="submit"
+                                class="px-8 py-4 bg-luxury-accent text-white text-xs uppercase tracking-[0.2em] font-semibold hover:bg-luxury-dark transition-colors">
+                            Get Early Access
+                        </button>
+                    </form>
+                    <p class="hero-note text-xs text-gray-400 mt-4">Join 500+ people waiting for launch. No spam, ever.</p>
+                </div>
+
+                <!-- Right: App Mockup Placeholder -->
+                <div class="w-full lg:w-1/2 flex justify-center">
+                    <div class="phone-mockup relative">
+                        <!-- Phone Frame -->
+                        <div class="w-[280px] h-[560px] bg-luxury-dark rounded-[3rem] p-3 shadow-2xl">
+                            <div class="w-full h-full bg-gradient-to-br from-luxury-accent/20 to-luxury-dark rounded-[2.5rem] flex items-center justify-center">
+                                <div class="text-center text-white/80">
+                                    <div class="text-6xl mb-4">S</div>
+                                    <p class="text-xs uppercase tracking-widest">App Preview</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-luxury-accent/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-luxury-accent/10 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: THE PROBLEM -->
+        <section id="problem" class="py-24 md:py-32 bg-luxury-dark text-white">
+            <div class="container mx-auto px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">The Challenge</span>
+                    <h2 class="section-title font-serif text-4xl md:text-6xl leading-tight mb-8">
+                        Millions face Sickle Cell<br><span class="italic text-luxury-accent">alone.</span>
+                    </h2>
+                    <p class="section-desc text-lg md:text-xl text-gray-400 leading-relaxed mb-12">
+                        Patients face unpredictable pain crises, complex medication schedules, and the need to communicate critical health information quickly during emergencies. Caregivers struggle to stay informed. There's no dedicated platform connecting everyone who cares.
+                    </p>
+
+                    <!-- Pain Points -->
+                    <div class="pain-points grid md:grid-cols-3 gap-8 text-left">
+                        <div class="pain-point relative border-l-2 border-luxury-accent pl-6">
+                            <div class="border-accent absolute left-0 top-0 w-0.5 h-full bg-luxury-accent origin-top"></div>
+                            <h3 class="font-serif text-2xl mb-3">Unpredictable Crises</h3>
+                            <p class="text-gray-400 text-sm">Pain episodes strike without warning. Getting help fast is critical.</p>
+                        </div>
+                        <div class="pain-point relative border-l-2 border-luxury-accent pl-6">
+                            <div class="border-accent absolute left-0 top-0 w-0.5 h-full bg-luxury-accent origin-top"></div>
+                            <h3 class="font-serif text-2xl mb-3">Complex Care</h3>
+                            <p class="text-gray-400 text-sm">Managing medications, hydration, triggers, and appointments is overwhelming.</p>
+                        </div>
+                        <div class="pain-point relative border-l-2 border-luxury-accent pl-6">
+                            <div class="border-accent absolute left-0 top-0 w-0.5 h-full bg-luxury-accent origin-top"></div>
+                            <h3 class="font-serif text-2xl mb-3">Disconnected Support</h3>
+                            <p class="text-gray-400 text-sm">Caregivers, doctors, and loved ones lack real-time information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: THE SOLUTION -->
+        <section id="solution" class="py-24 md:py-32 bg-white">
+            <div class="container mx-auto px-8">
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">The Solution</span>
+                    <h2 class="section-title font-serif text-4xl md:text-6xl text-luxury-text leading-tight mb-6">
+                        One app for the<br><span class="italic text-luxury-accent">entire community.</span>
+                    </h2>
+                    <p class="section-desc text-lg text-gray-600">
+                        Sickle Safe connects four key groups in one powerful ecosystem.
+                    </p>
+                </div>
+
+                <!-- Four Roles Grid -->
+                <div class="roles-grid grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Overcomers -->
+                    <div class="role-card bg-luxury-base p-8 border-t-4 border-luxury-accent">
+                        <div class="icon-circle w-12 h-12 bg-luxury-accent/10 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-luxury-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-luxury-text mb-3">Overcomers</h3>
+                        <p class="text-sm text-gray-500 mb-4">Patients living with Sickle Cell</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• One-tap crisis alert</li>
+                            <li>• Daily wellness tracking</li>
+                            <li>• Offline Medical ID</li>
+                            <li>• Circle of Care</li>
+                        </ul>
+                    </div>
+
+                    <!-- Helpers -->
+                    <div class="role-card bg-luxury-base p-8 border-t-4 border-luxury-accent">
+                        <div class="icon-circle w-12 h-12 bg-luxury-accent/10 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-luxury-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-luxury-text mb-3">Helpers</h3>
+                        <p class="text-sm text-gray-500 mb-4">Caregivers & Family</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Real-time monitoring</li>
+                            <li>• Crisis notifications</li>
+                            <li>• Health trend reports</li>
+                            <li>• Response guides</li>
+                        </ul>
+                    </div>
+
+                    <!-- Volunteers -->
+                    <div class="role-card bg-luxury-base p-8 border-t-4 border-luxury-accent">
+                        <div class="icon-circle w-12 h-12 bg-luxury-accent/10 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-luxury-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-luxury-text mb-3">Volunteers</h3>
+                        <p class="text-sm text-gray-500 mb-4">Community Champions</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Discover events</li>
+                            <li>• Complete missions</li>
+                            <li>• Build your resume</li>
+                            <li>• Connect locally</li>
+                        </ul>
+                    </div>
+
+                    <!-- Charities -->
+                    <div class="role-card bg-luxury-base p-8 border-t-4 border-luxury-accent">
+                        <div class="icon-circle w-12 h-12 bg-luxury-accent/10 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-luxury-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-luxury-text mb-3">Charities</h3>
+                        <p class="text-sm text-gray-500 mb-4">Organizations & Foundations</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Launch campaigns</li>
+                            <li>• Engage community</li>
+                            <li>• Track impact</li>
+                            <li>• Coordinate efforts</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: KEY FEATURES -->
+        <section id="features" class="py-24 md:py-32 bg-luxury-base">
+            <div class="container mx-auto px-8">
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Features</span>
+                    <h2 class="section-title font-serif text-4xl md:text-6xl text-luxury-text leading-tight">
+                        Built for <span class="italic text-luxury-accent">real needs.</span>
+                    </h2>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="features-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">01</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">One-Tap Crisis Alert</h3>
+                        <p class="text-sm text-gray-600">Instantly notify your care circle during emergencies with haptic feedback confirmation.</p>
+                    </div>
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">02</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">Offline Medical ID</h3>
+                        <p class="text-sm text-gray-600">QR code with blood type, allergies, and emergency protocols—works without internet.</p>
+                    </div>
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">03</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">Wellness Logging</h3>
+                        <p class="text-sm text-gray-600">Track pain levels, hydration, mood, medications, and triggers to identify patterns.</p>
+                    </div>
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">04</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">Circle of Care</h3>
+                        <p class="text-sm text-gray-600">Connect with trusted caregivers who receive real-time updates and alerts.</p>
+                    </div>
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">05</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">Medication Tracking</h3>
+                        <p class="text-sm text-gray-600">Never miss a dose with smart reminders and adherence tracking.</p>
+                    </div>
+
+                    <div class="feature-card bg-white p-8 shadow-sm hover:shadow-lg transition-shadow">
+                        <div class="feature-number text-luxury-accent text-3xl mb-4">06</div>
+                        <h3 class="font-serif text-xl text-luxury-text mb-3">Community Feed</h3>
+                        <p class="text-sm text-gray-600">Connect with peers, share experiences, and find support from those who understand.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 5: HOW IT WORKS - Pinned Scroll -->
+        <section id="how-it-works-intro" class="min-h-[50vh] w-full flex items-center justify-center bg-white">
+            <div class="text-center px-8">
+                <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">How It Works</span>
+                <h2 class="section-title font-serif text-4xl md:text-6xl text-luxury-text leading-tight">
+                    Three simple <span class="italic text-luxury-accent">steps.</span>
+                </h2>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="hiw-pin-section">
+            <div class="hiw-content">
+                <!-- Left: Step List -->
+                <div class="hiw-left">
+                    <ul class="hiw-list">
+                        <li>
+                            <span class="hiw-step-num">01</span>
+                            <span class="hiw-step-title">Download & Sign Up</span>
+                        </li>
+                        <li>
+                            <span class="hiw-step-num">02</span>
+                            <span class="hiw-step-title">Build Your Circle</span>
+                        </li>
+                        <li>
+                            <span class="hiw-step-num">03</span>
+                            <span class="hiw-step-title">Stay Connected</span>
+                        </li>
+                    </ul>
+                    <div class="hiw-fill"></div>
+                </div>
+
+                <!-- Right: Slides -->
+                <div class="hiw-right">
+                    <!-- Slide 1: Download -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon">
+                                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Download & Sign Up</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Get the app on iOS or Android. Create your profile and select your role — Overcomer, Helper, Volunteer, or Charity.</p>
+                            <div class="flex gap-4 mt-6">
+                                <span class="px-4 py-2 bg-luxury-dark text-white text-xs uppercase tracking-wider rounded">iOS</span>
+                                <span class="px-4 py-2 bg-luxury-dark text-white text-xs uppercase tracking-wider rounded">Android</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Build Circle -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon">
+                                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Build Your Circle</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Connect with caregivers, family, and your care team. Set up your offline Medical ID with blood type, allergies, and emergency protocols.</p>
+                            <div class="flex gap-2 mt-6 flex-wrap">
+                                <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Caregivers</span>
+                                <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Family</span>
+                                <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Doctors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Stay Connected -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon">
+                                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Stay Connected</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Track your wellness daily, receive instant crisis alerts, and never face a difficult moment alone. Your care team stays informed in real-time.</p>
+                            <div class="mt-6">
+                                <span class="text-luxury-accent font-semibold text-sm uppercase tracking-wider">One tap away from help</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: EMOTIONAL MESSAGE -->
+        <section id="quote" class="py-24 md:py-32 bg-luxury-dark text-white">
+            <div class="container mx-auto px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="quote-text font-serif text-4xl md:text-5xl leading-tight mb-8">
+                        "You're not alone<br><span class="italic text-luxury-accent">in this journey."</span>
+                    </h2>
+                    <p class="quote-desc text-lg text-gray-400 leading-relaxed mb-8">
+                        Built by people who understand Sickle Cell. Your health data, always with you, even offline. One tap away from help during a crisis. Keep your care team connected and informed.
+                    </p>
+                    <div class="tags flex flex-wrap justify-center gap-4">
+                        <span class="tag px-4 py-2 border border-gray-700 text-sm text-gray-400">iOS</span>
+                        <span class="tag px-4 py-2 border border-gray-700 text-sm text-gray-400">Android</span>
+                        <span class="tag px-4 py-2 border border-gray-700 text-sm text-gray-400">React Native</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 7: EARLY ACCESS CTA -->
+        <section id="early-access" class="py-24 md:py-32 bg-luxury-base">
+            <div class="container mx-auto px-8">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-center mb-12">
+                        <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Early Access</span>
+                        <h2 class="section-title font-serif text-4xl md:text-5xl text-luxury-text leading-tight mb-4">
+                            Be the first to know.
+                        </h2>
+                        <p class="section-desc text-gray-600">Join the waitlist and get exclusive early access when we launch.</p>
+                    </div>
+
+                    <form id="early-access-form" class="form-card bg-white p-8 md:p-12 shadow-lg">
+                        <div class="space-y-6">
+
+                            <div class="form-field">
+                                <label for="ea-email" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email Address</label>
+                                <input type="email"
+                                       id="ea-email"
+                                       name="email"
+                                       required
+                                       placeholder="you@example.com"
+                                       class="w-full px-4 py-3 border border-gray-300 focus:border-luxury-accent focus:outline-none transition-colors">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="ea-role" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">I am a...</label>
+                                <select id="ea-role"
+                                        name="role"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 focus:border-luxury-accent focus:outline-none transition-colors bg-white">
+                                    <option value="">Select your role</option>
+                                    <option value="overcomer">Overcomer (Patient)</option>
+                                    <option value="helper">Helper (Caregiver/Family)</option>
+                                    <option value="volunteer">Volunteer</option>
+                                    <option value="charity">Charity/Organization</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="ea-country" class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Country</label>
+                                <input type="text"
+                                       id="ea-country"
+                                       name="country"
+                                       placeholder="Your country"
+                                       class="w-full px-4 py-3 border border-gray-300 focus:border-luxury-accent focus:outline-none transition-colors">
+                            </div>
+
+                            <button type="submit"
+                                    class="submit-btn w-full py-4 bg-luxury-accent text-white text-xs uppercase tracking-[0.2em] font-semibold hover:bg-luxury-dark transition-colors">
+                                Join Early Access
+                            </button>
+
+                        </div>
+                    </form>
+
+                    <p class="text-center text-xs text-gray-400 mt-6">
+                        We respect your privacy. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="py-16 bg-luxury-dark text-white">
+        <div class="container mx-auto px-8">
+            <div class="footer-content">
+                <div class="flex flex-col md:flex-row justify-between items-start mb-12">
+                    <div class="mb-8 md:mb-0">
+                        <h5 class="font-serif text-2xl mb-2">SICKLE SAFE</h5>
+                        <p class="text-gray-500 text-sm">Your Sickle Cell Companion</p>
+                    </div>
+
+                    <div class="flex gap-8 text-sm text-gray-500">
+                        <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms</a>
+                        <a href="#" class="hover:text-white transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links flex gap-6 mb-12">
+                    <a href="#" class="social-link w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-luxury-accent hover:text-luxury-accent transition-colors">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" class="social-link w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-luxury-accent hover:text-luxury-accent transition-colors">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" class="social-link w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-luxury-accent hover:text-luxury-accent transition-colors">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 text-center">
+                    <p class="text-xs text-gray-600 uppercase tracking-widest">&copy; <span id="current-year">2025</span> Sickle Safe. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <!-- Main JavaScript (for mobile menu etc.) -->
+    <script src="js/main.js"></script>
+
+    <!-- V2 Page Animations -->
+    <script src="js/v2-animations.js"></script>
+
+    <!-- Page-specific JS -->
+    <script>
+        // Dynamic Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Simple form handling (placeholder)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thanks for signing up! We\'ll notify you when we launch.');
+                form.reset();
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
