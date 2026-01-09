@@ -666,7 +666,7 @@ const ServiceModal = {
             title: "The Volunteer",
             subtitle: "For Community Supporters",
             desc: "Make a meaningful impact in the SCD community. Track your volunteer hours and see real metrics on the difference you're making. Join community events and awareness campaigns. Complete missions and earn recognition for your contributions. Connect directly with patients through peer support forums. Your time matters — we help you see exactly how much.",
-            modalImg: "assets/images/sponsor2.jpg"
+            modalImg: "assets/images/volunteer2.jpg"
         }
     ],
 
