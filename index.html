@@ -522,56 +522,21 @@
                     </ul>
                 </div>
 
-                <!-- Right: Visual Card -->
-                <div class="w-full md:w-1/2 relative flex justify-center perspective-1000">
-                    <!-- The ID Card Visual -->
-                    <div id="id-card-visual" class="w-[340px] h-[540px] bg-white rounded-3xl shadow-2xl relative overflow-hidden border border-gray-200 p-8 flex flex-col justify-between transform transition-transform duration-700 hover:scale-105 preserve-3d">
-                        <!-- Background Pattern -->
-                        <div class="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                            <h1 class="font-serif text-9xl">SS</h1>
-                        </div>
-
-                        <!-- Top Section -->
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-8">
-                                <div class="w-16 h-16 bg-gray-100 rounded-full overflow-hidden flex items-center justify-center">
-                                    <span class="font-serif text-2xl text-luxury-accent">JD</span>
-                                </div>
-                                <div class="text-right">
-                                    <span class="block text-[10px] uppercase tracking-widest text-gray-400">Medical ID</span>
-                                    <span class="block text-luxury-accent font-bold text-xs uppercase tracking-widest">Active</span>
-                                </div>
-                            </div>
-                            <h3 class="font-serif text-3xl text-luxury-dark">Jane Doe</h3>
-                            <p class="text-[10px] uppercase tracking-[0.2em] text-luxury-accent mt-1">Sickle Cell Disease - SS</p>
-                        </div>
-
-                        <!-- Middle Section -->
-                        <div class="space-y-4 relative z-10">
-                            <div class="h-[1px] w-full bg-gray-100"></div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-400 uppercase tracking-widest">Blood Type</span>
-                                <span class="font-serif text-xl text-luxury-dark">O Positive</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-400 uppercase tracking-widest">Subtype</span>
-                                <span class="font-serif text-xl text-luxury-dark">Ro</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-400 uppercase tracking-widest">Allergies</span>
-                                <span class="font-serif text-xl text-luxury-dark">Penicillin</span>
+                <!-- Right: Phone Mockup with Medical ID -->
+                <div class="w-full md:w-1/2 relative flex justify-center">
+                    <div class="phone-mockup relative">
+                        <!-- Phone Frame -->
+                        <div class="w-[320px] h-[680px] bg-luxury-dark rounded-[3rem] p-3 shadow-2xl">
+                            <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                                <!-- Medical ID Screenshot -->
+                                <img src="assets/images/medical-id-screen.png"
+                                     alt="Medical ID Screen"
+                                     class="w-full h-full object-cover object-top">
                             </div>
                         </div>
-
-                        <!-- Bottom Section -->
-                        <div class="mt-8 bg-luxury-dark p-6 rounded-2xl text-white text-center relative z-10">
-                            <span class="text-[10px] tracking-[0.3em] uppercase block mb-4 text-gray-400">Emergency Access</span>
-                            <!-- QR Code Placeholder -->
-                            <div class="w-24 h-24 bg-white mx-auto p-2 rounded-lg flex items-center justify-center">
-                                <span class="text-xs text-gray-400">QR Code</span>
-                            </div>
-                            <p class="text-[8px] text-gray-500 mt-4 uppercase tracking-widest">Biometric Lock Enabled</p>
-                        </div>
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-luxury-accent/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-luxury-accent/10 rounded-full blur-3xl"></div>
                     </div>
                 </div>
             </div>
