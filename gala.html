@@ -145,13 +145,28 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-gala-gold">
+            <button id="mobile-menu-btn" class="md:hidden text-gala-gold">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gala-dark z-40 hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-end p-6">
+                <button id="mobile-menu-close" class="text-gala-gold text-sm uppercase tracking-widest">Close</button>
+            </div>
+            <nav class="flex flex-col items-center justify-center flex-1 gap-8 text-center">
+                <a href="#about" class="text-white text-3xl font-display hover:text-gala-gold transition-colors">About</a>
+                <a href="#highlights" class="text-white text-3xl font-display hover:text-gala-gold transition-colors">Highlights</a>
+                <a href="#app" class="text-white text-3xl font-display hover:text-gala-gold transition-colors">SickleSafe App</a>
+                <a href="#partners" class="text-white text-3xl font-display hover:text-gala-gold transition-colors">Partner With Us</a>
+            </nav>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-purple-gradient pt-20">
@@ -163,7 +178,7 @@
 
         <div class="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
 
-            <h1 class="font-display text-5xl md:text-7xl lg:text-9xl mb-6 leading-tight opacity-0 animate-fade-up mt-12">
+            <h1 class="font-display text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight opacity-0 animate-fade-up mt-12">
                 A Night Without<br>
                 <span class="gold-text-gradient italic font-serif">Sickle Cell</span>
             </h1>
@@ -517,6 +532,29 @@
                 navbar.classList.add('py-4', 'bg-gala-dark/80');
                 navbar.classList.remove('py-2', 'bg-gala-dark/95');
             }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
         });
 
     </script>
