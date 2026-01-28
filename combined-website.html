@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sickle Safe | Private Health Management for Sickle Cell Disease</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sickle Safe is a private digital health platform designed to monitor, predict, and protect patients with Sickle Cell Disease from crises before they manifest.">
+    <meta name="keywords" content="sickle cell, health management, patient care, crisis prediction, health monitoring, sickle cell disease">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            base: '#F5F5F0',
+                            dark: '#1A1A1A',
+                            accent: '#8B0000',
+                            text: '#2C2C2C',
+                            concrete: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <style>
+        /**
+         * Sickle Safe - Custom Styles
+         * Cinematic Luxury Health Platform
+         */
+
+        /* Base Styles */
+        body {
+            background-color: #F5F5F0;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: #8B0000;
+            color: white;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnPjxmaWx0ZXIgaWQ9J25vaXNlJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42JyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI25vaXNlKScgb3BhY2l0eT0nMC4wNScvPjwvc3ZnPg==");
+            opacity: 0.4;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F5F5F0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        /* Skip Link - Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #8B0000;
+            color: white;
+            padding: 8px 16px;
+            z-index: 10000;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Mobile Menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1A1A1A;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-overlay nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .menu-overlay a {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2.5rem;
+            color: #F5F5F0;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+        }
+
+        .menu-overlay.active a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-overlay a:hover {
+            color: #8B0000;
+        }
+
+        .menu-overlay a:nth-child(1) { transition-delay: 0.1s; }
+        .menu-overlay a:nth-child(2) { transition-delay: 0.15s; }
+        .menu-overlay a:nth-child(3) { transition-delay: 0.2s; }
+
+        .menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: #F5F5F0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            font-family: "Inter", sans-serif;
+        }
+
+        .menu-close:hover {
+            color: #8B0000;
+        }
+
+        /* Form Styles */
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #d1d5db;
+            outline: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #8B0000;
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group.error input {
+            border-color: #dc2626;
+        }
+
+        .form-group .error-message {
+            position: absolute;
+            bottom: -1.25rem;
+            left: 0;
+            font-size: 0.625rem;
+            color: #dc2626;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-group.error .error-message {
+            opacity: 1;
+        }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .submit-btn .btn-text {
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn .btn-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .submit-btn.loading .btn-text {
+            transform: translateY(200%);
+        }
+
+        .submit-btn.loading .btn-loading {
+            opacity: 1;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+
+        .form-success.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Brand Statements - Pinned Scroll Section */
+        #statements {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1A1A1A;
+            overflow: hidden;
+        }
+
+        .statements-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .statement {
+            position: absolute;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            filter: blur(10px);
+            transform: scale(0.9);
+            will-change: transform, opacity, filter;
+        }
+
+        .statement-text {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: #F5F5F0;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .statement-text .accent {
+            color: #8B0000;
+        }
+
+        .statement-stat {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 300;
+            color: #8B0000;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .statement-label {
+            font-family: "Inter", sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #9CA3AF;
+        }
+
+        .statement-final {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-style: italic;
+            color: #F5F5F0;
+        }
+
+        /* Image Loading States */
+        .img-loading {
+            position: relative;
+        }
+
+        .img-loading img {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .img-loading.loaded img {
+            opacity: 1;
+        }
+
+        .img-loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #E5E5E0 0%, #D5D5D0 50%, #E5E5E0 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease infinite;
+            z-index: 0;
+        }
+
+        .img-loading.loaded::before {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .img-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            z-index: 2;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-loading.loaded .img-spinner {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .img-spinner::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(139, 0, 0, 0.2);
+            border-top-color: #8B0000;
+            border-radius: 50%;
+            animation: spinner-rotate 0.8s linear infinite;
+        }
+
+        @keyframes spinner-rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* How It Works - Pinned Scroll Section */
+        .hiw-pin-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .hiw-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 2rem;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .hiw-left {
+            position: relative;
+            padding-right: 4rem;
+            padding-left: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .hiw-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .hiw-list li {
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 0;
+            color: #9CA3AF;
+            transition: color 0.3s ease;
+            cursor: default;
+        }
+
+        .hiw-list li.active {
+            color: #8B0000;
+        }
+
+        .hiw-step-num {
+            font-family: "Inter", sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hiw-step-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .hiw-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            background-color: #8B0000;
+            transform-origin: top left;
+        }
+
+        .hiw-right {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .hiw-slide {
+            position: absolute;
+            width: 100%;
+            max-width: 500px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .hiw-slide-content {
+            background: #F5F5F0;
+            padding: 3rem;
+            border-radius: 8px;
+        }
+
+        .hiw-slide-icon {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+        }
+
+        /* SVG Animations for How It Works */
+        .anim-phone {
+            animation: phoneFloat 3s ease-in-out infinite;
+        }
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .anim-download {
+            animation: downloadPulse 2s ease-in-out infinite;
+        }
+        @keyframes downloadPulse {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(5px); opacity: 0.5; }
+        }
+
+        .anim-orbit-1 {
+            animation: orbit1 6s linear infinite;
+            transform-origin: 100px 100px;
+        }
+        .anim-orbit-2 {
+            animation: orbit2 6s linear infinite;
+            transform-origin: 100px 100px;
+        }
+        .anim-orbit-3 {
+            animation: orbit3 6s linear infinite;
+            transform-origin: 100px 100px;
+        }
+        @keyframes orbit1 {
+            0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+        }
+        @keyframes orbit2 {
+            0% { transform: rotate(120deg) translateX(60px) rotate(-120deg); }
+            100% { transform: rotate(480deg) translateX(60px) rotate(-480deg); }
+        }
+        @keyframes orbit3 {
+            0% { transform: rotate(240deg) translateX(60px) rotate(-240deg); }
+            100% { transform: rotate(600deg) translateX(60px) rotate(-600deg); }
+        }
+
+        .anim-center {
+            animation: centerPulse 2s ease-in-out infinite;
+        }
+        @keyframes centerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .anim-connection {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: drawLine 2s ease-in-out infinite;
+        }
+        @keyframes drawLine {
+            0% { stroke-dashoffset: 50; opacity: 0.3; }
+            50% { stroke-dashoffset: 0; opacity: 1; }
+            100% { stroke-dashoffset: -50; opacity: 0.3; }
+        }
+
+        .anim-member {
+            opacity: 0;
+            animation: memberPop 2.5s infinite;
+        }
+        .anim-member:nth-child(1) { animation-delay: 0.2s; }
+        .anim-member:nth-child(2) { animation-delay: 0.5s; }
+        .anim-member:nth-child(3) { animation-delay: 0.8s; }
+        .anim-member:nth-child(4) { animation-delay: 1.1s; }
+        @keyframes memberPop {
+            0% { opacity: 0; transform: scale(0.5); }
+            20% { opacity: 1; transform: scale(1.1); }
+            30% { transform: scale(1); }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .anim-ripple {
+            animation: ripple 2s ease-out infinite;
+        }
+        @keyframes ripple {
+            0% { r: 20; opacity: 0.8; }
+            100% { r: 70; opacity: 0; }
+        }
+
+        .anim-shield {
+            animation: shieldGlow 2s ease-in-out infinite;
+        }
+        @keyframes shieldGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.6)); }
+        }
+
+        .anim-heartline {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: heartLine 2s linear infinite;
+        }
+        @keyframes heartLine {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .anim-check {
+            opacity: 0;
+            animation: checkPop 3s infinite;
+        }
+        .anim-check:nth-child(1) { animation-delay: 0.5s; }
+        .anim-check:nth-child(2) { animation-delay: 1.2s; }
+        .anim-check:nth-child(3) { animation-delay: 1.9s; }
+        @keyframes checkPop {
+            0% { opacity: 0; transform: scale(0); }
+            15% { opacity: 1; transform: scale(1.3); }
+            25% { transform: scale(1); }
+            75% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Medical ID SVG Animations */
+        .anim-id-card {
+            animation: idCardSlide 1s ease-out forwards;
+        }
+        @keyframes idCardSlide {
+            0% { transform: translateY(15px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .anim-id-profile {
+            animation: idProfilePulse 2.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+        @keyframes idProfilePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.9; }
+        }
+
+        .anim-id-data-1 {
+            animation: idDataFill 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+            transform: scaleX(0);
+        }
+        .anim-id-data-2 {
+            animation: idDataFill 0.8s ease-out forwards;
+            animation-delay: 0.5s;
+            transform: scaleX(0);
+        }
+        .anim-id-data-3 {
+            animation: idDataFill 0.8s ease-out forwards;
+            animation-delay: 0.7s;
+            transform: scaleX(0);
+        }
+        @keyframes idDataFill {
+            0% { transform: scaleX(0); transform-origin: left; }
+            100% { transform: scaleX(1); transform-origin: left; }
+        }
+
+        .anim-id-qr {
+            animation: idQrAppear 0.6s ease-out forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+        @keyframes idQrAppear {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .anim-id-status {
+            animation: idStatusPop 0.5s ease-out forwards;
+            animation-delay: 1.2s;
+            transform: scale(0);
+        }
+        @keyframes idStatusPop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .anim-id-phone {
+            animation: idScreenGlow 3s ease-in-out infinite;
+        }
+        @keyframes idScreenGlow {
+            0%, 100% { filter: drop-shadow(0 0 3px rgba(139, 0, 0, 0.2)); }
+            50% { filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.4)); }
+        }
+
+        /* Focus Styles - Accessibility */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 2px solid #8B0000;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-overlay a {
+                font-size: 1.75rem;
+            }
+
+            .hiw-pin-section {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+
+            .hiw-content {
+                flex-direction: column;
+                padding: 2rem 1rem;
+                min-height: auto;
+                overflow: hidden;
+            }
+
+            .hiw-left {
+                padding-left: 1.5rem;
+                padding-right: 0;
+                margin-bottom: 2rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .hiw-step-title {
+                font-size: 1.25rem;
+            }
+
+            .hiw-right {
+                flex-grow: 0;
+                min-height: 380px;
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            .hiw-slide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                max-width: 100%;
+                transform: none;
+            }
+
+            .hiw-slide-content {
+                padding: 1rem;
+            }
+
+            .hiw-slide-icon {
+                margin-bottom: 0.75rem;
+                max-width: 140px;
+                max-height: 140px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Reduced Motion - Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .noise-overlay {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Skip Link - Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 mix-blend-difference text-luxury-base pointer-events-none" aria-label="Site navigation">
+        <a href="#hero" class="uppercase tracking-[0.3em] text-xs font-bold pointer-events-auto" aria-label="Sickle Safe - Home">
+            Sickle Safe
+        </a>
+        <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto hover:text-luxury-accent transition-colors" aria-label="Open menu">
+            Menu
+        </button>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+        <button id="menu-close" class="menu-close" aria-label="Close menu">Close</button>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="gala.html">Gala Event</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-luxury-dark text-white rounded-full flex items-center justify-center z-50 opacity-0 pointer-events-none transition-all duration-300 hover:bg-luxury-accent hover:scale-110 shadow-lg" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="min-h-screen w-full relative flex items-center justify-center overflow-hidden bg-luxury-base">
+            <div class="container mx-auto px-8 py-24 flex flex-col lg:flex-row items-center gap-16">
+
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left">
+                    <span class="hero-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Coming Soon to iOS & Android</span>
+                    <h1 class="hero-title font-serif text-5xl md:text-7xl text-luxury-text tracking-tight leading-tight mb-6">
+                        Never Face a<br><span class="italic text-luxury-accent">Crisis Alone</span>
+                    </h1>
+                    <p class="hero-subtitle font-sans text-lg text-gray-600 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                        One tap connects you to your entire care team. Real-time crisis alerts, offline Medical ID, and daily wellness tracking — all in one app built for warriors and their circle.
+                    </p>
+
+                    <!-- Early Access Form -->
+                    <form id="hero-form" class="hero-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto lg:mx-0">
+                        <input type="email" placeholder="Enter your email" required class="flex-1 px-6 py-4 border border-gray-300 text-sm focus:border-luxury-accent focus:outline-none transition-colors">
+                        <button type="submit" class="px-8 py-4 bg-luxury-accent text-white text-xs uppercase tracking-[0.2em] font-semibold hover:bg-luxury-dark transition-colors">
+                            Get Early Access
+                        </button>
+                    </form>
+                    <p class="hero-note text-xs text-gray-400 mt-4">Join 500+ people waiting for launch. No spam, ever.</p>
+                </div>
+
+                <!-- Right: App Mockup -->
+                <div class="w-full lg:w-1/2 flex justify-center">
+                    <div class="phone-mockup relative">
+                        <div class="w-[320px] h-[640px] bg-luxury-dark rounded-[3rem] p-3 shadow-2xl">
+                            <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-[2.5rem] overflow-hidden relative flex items-center justify-center">
+                                <div class="text-center p-8">
+                                    <div class="w-20 h-20 mx-auto mb-4 bg-luxury-accent rounded-2xl flex items-center justify-center">
+                                        <span class="text-white text-3xl font-serif">S</span>
+                                    </div>
+                                    <h3 class="font-serif text-2xl text-luxury-dark mb-2">Sickle Safe</h3>
+                                    <p class="text-sm text-gray-500">Coming Soon</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-luxury-accent/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-luxury-accent/10 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- SECTION 2: BRAND STATEMENTS -->
+        <section id="statements" aria-label="Key statistics">
+            <div class="statements-container">
+                <div class="statement">
+                    <p class="statement-text">Millions live with SCD worldwide.<br><span class="accent">Most face crises without coordinated support.</span></p>
+                </div>
+                <div class="statement">
+                    <div class="statement-stat">17K+</div>
+                    <p class="statement-label">Living in the United Kingdom are affected</p>
+                </div>
+                <div class="statement">
+                    <div class="statement-stat">5+</div>
+                    <p class="statement-label">ER visits per year average</p>
+                </div>
+                <div class="statement">
+                    <div class="statement-stat">78%</div>
+                    <p class="statement-label">Caregivers feel unprepared</p>
+                </div>
+                <div class="statement">
+                    <div class="statement-stat">0</div>
+                    <p class="statement-label">Apps built for the whole circle</p>
+                </div>
+                <div class="statement">
+                    <p class="statement-final">"Until now."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SERVICES -->
+        <section id="services-wrapper" class="w-full h-screen bg-luxury-base text-luxury-text overflow-hidden relative" aria-label="Our services">
+            <div id="services-container" class="flex h-full w-[300vw]">
+
+                <!-- Panel 1: Warrior -->
+                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300">
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group bg-gradient-to-br from-red-100 to-red-50">
+                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full">
+                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Overcomer</h3>
+                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Patients</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 bg-stone-100">
+                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
+                            Take control of your health with <span class="text-luxury-accent font-semibold">one-tap crisis alerts</span> that instantly notify your entire care team.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                One-tap emergency alert with location sharing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Offline Medical ID with QR code for hospitals
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Daily pain, hydration, and medication tracking
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Mood and trigger logging for pattern detection
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Panel 2: Helper -->
+                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300 bg-white">
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 order-2 md:order-1">
+                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
+                            Know the moment something's wrong. Get <span class="text-luxury-accent font-semibold">real-time alerts</span> with live location tracking when your loved one triggers crisis mode.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Instant push notifications during crises
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Real-time location and ETA tracking
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                View health metrics and medication adherence
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Coordinate with other circle members
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group order-1 md:order-2 bg-gradient-to-br from-blue-100 to-blue-50">
+                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full z-10">
+                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Helper</h3>
+                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Family & Caregivers</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Panel 3: Volunteer -->
+                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300">
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group bg-gradient-to-br from-green-100 to-green-50">
+                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full z-10">
+                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Volunteer</h3>
+                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Community Supporters</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 bg-stone-100">
+                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
+                            Make a meaningful impact. <span class="text-luxury-accent font-semibold">Track your contribution</span> and connect with those who need support most.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Track volunteer hours and impact metrics
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Join community events and awareness campaigns
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Complete missions and earn recognition
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
+                                Connect with patients through peer support
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: CRISIS MODE -->
+        <section id="crisis" class="relative py-32 bg-luxury-base overflow-hidden" aria-label="Crisis Mode feature">
+            <div class="absolute top-0 bottom-0 left-6 md:left-1/2 w-[1px] bg-gray-200 md:-translate-x-1/2 z-0">
+                <div id="crisis-line-fill" class="w-full bg-luxury-accent h-0"></div>
+            </div>
+
+            <div class="container mx-auto px-8 relative z-10">
+                <div class="text-center mb-32 relative">
+                    <div class="inline-block bg-luxury-base px-6 relative z-10">
+                        <span class="text-luxury-accent text-xs tracking-[0.3em] uppercase font-bold block mb-4">Emergency Protocol</span>
+                        <h2 class="font-serif text-5xl md:text-7xl text-luxury-text">One Tap.<br>Everyone Knows.</h2>
+                    </div>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto space-y-16 md:space-y-32">
+                    <!-- Steps -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
+                        <div class="hidden md:block md:w-[45%] text-right pr-12">
+                            <h3 class="font-serif text-3xl text-luxury-text mb-2">Tap Crisis Button</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">One tap activates emergency mode with haptic confirmation.</p>
+                        </div>
+                        <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
+                        <div class="md:hidden pl-8 w-full">
+                            <h3 class="font-serif text-2xl text-luxury-text mb-2">Tap Crisis Button</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">One tap activates emergency mode with haptic confirmation.</p>
+                        </div>
+                        <div class="hidden md:block md:w-[45%]"></div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
+                        <div class="hidden md:block md:w-[45%]"></div>
+                        <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
+                        <div class="pl-8 md:pl-12 w-full md:w-[45%] md:text-left">
+                            <h3 class="font-serif text-2xl md:text-3xl text-luxury-text mb-2">Location Shared</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Real-time GPS location broadcasts to your circle.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
+                        <div class="hidden md:block md:w-[45%] text-right pr-12">
+                            <h3 class="font-serif text-3xl text-luxury-text mb-2">Circle Notified</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to all helpers and emergency contacts.</p>
+                        </div>
+                        <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
+                        <div class="md:hidden pl-8 w-full">
+                            <h3 class="font-serif text-2xl text-luxury-text mb-2">Circle Notified</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to all helpers and emergency contacts.</p>
+                        </div>
+                        <div class="hidden md:block md:w-[45%]"></div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
+                        <div class="hidden md:block md:w-[45%]"></div>
+                        <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
+                        <div class="pl-8 md:pl-12 w-full md:w-[45%] md:text-left">
+                            <h3 class="font-serif text-2xl md:text-3xl text-luxury-text mb-2">Help Arrives</h3>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Track who's responding and their ETA in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: MEDICAL ID -->
+        <section id="medical-id" class="min-h-screen w-full relative bg-stone-100 flex items-center justify-center overflow-hidden py-24" aria-label="Medical ID feature">
+            <div class="container mx-auto px-8 flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 z-10">
+                    <span class="text-luxury-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">Offline-First Design</span>
+                    <h2 class="font-serif text-5xl md:text-6xl text-luxury-text mb-6">Your Medical ID.<br><span class="italic text-gray-400">Always accessible.</span></h2>
+                    <p class="font-sans text-gray-500 text-lg leading-relaxed mb-12 max-w-md">
+                        In an emergency, Wi-Fi isn't guaranteed. Your Medical ID card works completely offline, storing critical information that could save your life.
+                    </p>
+
+                    <ul class="space-y-12">
+                        <li class="flex items-start gap-6 group med-id-item opacity-0 transform translate-y-4">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full border border-gray-300 flex items-center justify-center text-luxury-accent group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-500">
+                                <span class="font-serif text-lg">01</span>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-2xl text-luxury-text mb-1">Blood type & Subtype</h4>
+                                <p class="text-sm text-gray-400 font-sans tracking-wide">Critical for transfusions and treatment decisions.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-6 group med-id-item opacity-0 transform translate-y-4">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full border border-gray-300 flex items-center justify-center text-luxury-accent group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-500">
+                                <span class="font-serif text-lg">02</span>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-2xl text-luxury-text mb-1">Allergies & Restrictions</h4>
+                                <p class="text-sm text-gray-400 font-sans tracking-wide">Prevent dangerous drug interactions.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-6 group med-id-item opacity-0 transform translate-y-4">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full border border-gray-300 flex items-center justify-center text-luxury-accent group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-500">
+                                <span class="font-serif text-lg">03</span>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-2xl text-luxury-text mb-1">Emergency Protocol</h4>
+                                <p class="text-sm text-gray-400 font-sans tracking-wide">Step-by-step instructions for first responders.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-6 group med-id-item opacity-0 transform translate-y-4">
+                            <div class="w-12 h-12 flex-shrink-0 rounded-full border border-gray-300 flex items-center justify-center text-luxury-accent group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-500">
+                                <span class="font-serif text-lg">04</span>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-2xl text-luxury-text mb-1">Instant Scan</h4>
+                                <p class="text-sm text-gray-400 font-sans tracking-wide">QR code works without internet. Shareable via SMS.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="w-full md:w-1/2 relative flex justify-center">
+                    <div class="phone-mockup relative">
+                        <div class="w-[320px] h-[680px] bg-luxury-dark rounded-[3rem] p-3 shadow-2xl">
+                            <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative p-6">
+                                <!-- Medical ID Card Mockup -->
+                                <div class="h-full flex flex-col">
+                                    <div class="text-center mb-6">
+                                        <span class="text-xs text-gray-400 tracking-widest">MEDICAL ID</span>
+                                        <h3 class="font-serif text-2xl text-luxury-dark mt-2">John Doe</h3>
+                                        <p class="text-xs text-luxury-accent">Sickle Cell Disease - SS</p>
+                                    </div>
+                                    <div class="flex-1 space-y-4 text-sm">
+                                        <div class="flex justify-between border-b pb-2">
+                                            <span class="text-gray-400">Blood Type</span>
+                                            <span class="font-serif">O+</span>
+                                        </div>
+                                        <div class="flex justify-between border-b pb-2">
+                                            <span class="text-gray-400">Subtype</span>
+                                            <span class="font-serif">Ro</span>
+                                        </div>
+                                        <div class="flex justify-between border-b pb-2">
+                                            <span class="text-gray-400">Allergies</span>
+                                            <span class="font-serif">Penicillin</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 bg-luxury-dark text-white p-4 rounded-lg text-center">
+                                        <p class="text-xs mb-2">EMERGENCY QR CODE</p>
+                                        <div class="w-16 h-16 bg-white mx-auto rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-luxury-accent/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-luxury-accent/10 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: HOW IT WORKS -->
+        <section id="how-it-works-intro" class="min-h-[50vh] w-full flex items-center justify-center bg-white">
+            <div class="text-center px-8">
+                <span class="section-badge inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Getting Started</span>
+                <h2 class="section-title font-serif text-4xl md:text-6xl text-luxury-text leading-tight">
+                    Four steps to <span class="italic text-luxury-accent">peace of mind.</span>
+                </h2>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="hiw-pin-section">
+            <div class="hiw-content">
+                <div class="hiw-left">
+                    <ul class="hiw-list">
+                        <li>
+                            <span class="hiw-step-num">01</span>
+                            <span class="hiw-step-title">Download & Choose Your Role</span>
+                        </li>
+                        <li>
+                            <span class="hiw-step-num">02</span>
+                            <span class="hiw-step-title">Set Up Your Medical ID</span>
+                        </li>
+                        <li>
+                            <span class="hiw-step-num">03</span>
+                            <span class="hiw-step-title">Build Your Circle of Care</span>
+                        </li>
+                        <li>
+                            <span class="hiw-step-num">04</span>
+                            <span class="hiw-step-title">Track & Stay Protected</span>
+                        </li>
+                    </ul>
+                    <div class="hiw-fill"></div>
+                </div>
+
+                <div class="hiw-right">
+                    <!-- Slide 1 -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon w-48 h-48 md:w-40 md:h-40 mx-auto">
+                                <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
+                                    <g class="anim-phone">
+                                        <rect x="70" y="50" width="60" height="100" rx="8" fill="white" stroke="#8B0000" stroke-width="2"/>
+                                        <rect x="75" y="60" width="50" height="75" rx="2" fill="#F0F0F0"/>
+                                        <circle cx="100" cy="142" r="4" fill="#E0E0E0" stroke="#8B0000" stroke-width="1"/>
+                                    </g>
+                                    <g class="anim-orbit-1">
+                                        <circle cx="100" cy="100" r="14" fill="white" stroke="#8B0000" stroke-width="1.5"/>
+                                        <path d="M100,96 C97,93 93,93 93,97 C93,101 100,106 100,106 C100,106 107,101 107,97 C107,93 103,93 100,96" fill="#8B0000"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Download & Choose Your Role</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Get the app on iOS or Android. Select your role — Overcomer (patient), Helper (caregiver), or Volunteer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon w-48 h-48 md:w-40 md:h-40 mx-auto">
+                                <svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+                                    <g class="anim-id-phone">
+                                        <rect x="30" y="5" width="140" height="210" rx="16" fill="white" stroke="#E0E0E0" stroke-width="2"/>
+                                        <rect x="36" y="15" width="128" height="190" rx="10" fill="#F8F8F6"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Set Up Your Medical ID</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Enter your blood type, allergies, and emergency contacts. Works offline with QR code.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon w-48 h-48 md:w-40 md:h-40 mx-auto">
+                                <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
+                                    <circle class="anim-ripple" cx="100" cy="100" r="20" fill="none" stroke="#8B0000" stroke-width="1" opacity="0.5"/>
+                                    <line class="anim-connection" x1="100" y1="100" x2="100" y2="40" stroke="#8B0000" stroke-width="2"/>
+                                    <line class="anim-connection" x1="100" y1="100" x2="160" y2="100" stroke="#8B0000" stroke-width="2"/>
+                                    <g class="anim-center">
+                                        <circle cx="100" cy="100" r="25" fill="white" stroke="#8B0000" stroke-width="2"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Build Your Circle of Care</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Invite family, friends, and caregivers. Assign roles and permissions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="hiw-slide">
+                        <div class="hiw-slide-content">
+                            <div class="hiw-slide-icon w-48 h-48 md:w-40 md:h-40 mx-auto">
+                                <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
+                                    <g class="anim-shield">
+                                        <path d="M100,30 L160,50 L160,110 Q160,160 100,180 Q40,160 40,110 L40,50 Z" fill="white" stroke="#8B0000" stroke-width="2.5"/>
+                                    </g>
+                                    <path class="anim-heartline" d="M60,105 L75,105 L85,90 L95,115 L105,95 L115,105 L140,105" fill="none" stroke="#8B0000" stroke-width="2.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Track & Stay Protected</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Log daily wellness. One tap alerts your circle with location during crisis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: FEATURES -->
+        <section id="features" class="relative bg-luxury-base py-24" aria-label="App features">
+            <div class="container mx-auto px-8 max-w-4xl">
+                <div class="text-center mb-16">
+                    <span class="text-luxury-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">Everything You Need</span>
+                    <h2 class="font-serif text-5xl text-luxury-text leading-tight">
+                        Built for<br><span class="italic text-luxury-accent">real life.</span>
+                    </h2>
+                </div>
+
+                <div class="space-y-24">
+                    <div class="text-center">
+                        <span class="text-luxury-accent font-serif text-6xl opacity-20 block mb-4">01</span>
+                        <h3 class="font-serif text-3xl text-luxury-text mb-4">Health Logging</h3>
+                        <p class="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            Track pain levels, hydration, medications, mood, and triggers daily. Build a comprehensive health timeline.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="text-luxury-accent font-serif text-6xl opacity-20 block mb-4">02</span>
+                        <h3 class="font-serif text-3xl text-luxury-text mb-4">Circle Messaging</h3>
+                        <p class="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            Direct and group chats with your care team. Share updates and coordinate care together.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="text-luxury-accent font-serif text-6xl opacity-20 block mb-4">03</span>
+                        <h3 class="font-serif text-3xl text-luxury-text mb-4">Task Delegation</h3>
+                        <p class="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            Assign tasks to helpers during crises. Track who's handling what with real-time updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: FAQ -->
+        <section id="faq" class="min-h-screen w-full relative bg-white py-24" aria-label="Frequently asked questions">
+            <div class="container mx-auto px-8 max-w-4xl">
+                <div class="text-center mb-16">
+                    <span class="inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">FAQ</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-luxury-text leading-tight">
+                        Common <span class="italic text-luxury-accent">questions.</span>
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left bg-white hover:bg-gray-50 transition-colors" aria-expanded="false">
+                            <h3 class="font-serif text-xl text-luxury-text pr-4">How does Crisis Mode work?</h3>
+                            <svg class="faq-icon w-5 h-5 text-luxury-accent flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden">
+                            <p class="font-sans text-sm text-gray-600 leading-relaxed px-6 pb-6">When you tap the Crisis button, the app immediately sends push notifications to everyone in your Circle of Care with your real-time GPS location.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left bg-white hover:bg-gray-50 transition-colors" aria-expanded="false">
+                            <h3 class="font-serif text-xl text-luxury-text pr-4">Does the Medical ID work without internet?</h3>
+                            <svg class="faq-icon w-5 h-5 text-luxury-accent flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden">
+                            <p class="font-sans text-sm text-gray-600 leading-relaxed px-6 pb-6">Yes. Your Medical ID is stored locally on your device and works completely offline. The QR code works even without connectivity.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left bg-white hover:bg-gray-50 transition-colors" aria-expanded="false">
+                            <h3 class="font-serif text-xl text-luxury-text pr-4">Is my health data secure?</h3>
+                            <svg class="faq-icon w-5 h-5 text-luxury-accent flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden">
+                            <p class="font-sans text-sm text-gray-600 leading-relaxed px-6 pb-6">Absolutely. We use end-to-end encryption for all data. Your information is only visible to people you add to your Circle. We will never sell your data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: CONTACT -->
+        <section id="contact" class="min-h-screen w-full relative bg-luxury-base flex items-center justify-center py-24" aria-label="Early access signup">
+            <div class="w-full max-w-xl px-8">
+                <header class="text-center mb-12">
+                    <span class="inline-block text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-6">Join the Waitlist</span>
+                    <h2 class="font-serif text-5xl mb-4 text-luxury-text">Get Early Access</h2>
+                    <p class="text-gray-500 font-sans text-sm">Be among the first to experience Sickle Safe when we launch.</p>
+                </header>
+
+                <form id="contact-form" class="space-y-8" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="NAME" required minlength="2" autocomplete="name" class="w-full outline-none text-sm tracking-widest uppercase py-2 bg-transparent">
+                        <span class="error-message" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="EMAIL" required autocomplete="email" class="w-full outline-none text-sm tracking-widest uppercase py-2 bg-transparent">
+                        <span class="error-message" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="role" name="role" required class="w-full outline-none font-sans text-gray-400 text-sm tracking-widest uppercase py-2 bg-transparent cursor-pointer">
+                            <option value="warrior">I am a Warrior</option>
+                            <option value="caregiver">I am a Care Giver</option>
+                            <option value="sponsor">I am a Sponsor</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-8 text-center">
+                        <button type="submit" class="submit-btn bg-luxury-dark text-white px-12 py-4 text-xs uppercase tracking-[0.3em] hover:bg-luxury-accent transition-colors duration-500 relative">
+                            <span class="btn-text">Submit Application</span>
+                            <span class="btn-loading" aria-hidden="true">
+                                <svg class="animate-spin h-5 w-5 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="form-success" class="form-success">
+                    <div class="text-luxury-accent text-6xl mb-4">✓</div>
+                    <h3 class="font-serif text-3xl mb-4">Application Received</h3>
+                    <p class="text-gray-500 text-sm">We will review your application and contact you within 48 hours.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="py-24 bg-black text-white border-t border-gray-900 relative z-20">
+        <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start">
+            <div class="mb-12 md:mb-0">
+                <h5 class="font-serif text-2xl">SICKLE SAFE</h5>
+            </div>
+            <nav class="flex gap-12 text-xs uppercase tracking-widest text-gray-500">
+                <a href="#" class="hover:text-white transition-colors">Legal</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+        </div>
+        <div class="container mx-auto px-8 mt-24 text-center">
+            <p class="text-[10px] text-gray-800 uppercase tracking-widest">&copy; <span id="current-year">2025</span> Sickle Safe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        /**
+         * Sickle Safe - Main JavaScript
+         */
+
+        // Mobile Menu
+        const MobileMenu = {
+            overlay: null,
+            menuBtn: null,
+            closeBtn: null,
+            menuLinks: null,
+            isOpen: false,
+
+            init() {
+                this.overlay = document.getElementById('menu-overlay');
+                this.menuBtn = document.getElementById('menu-btn');
+                this.closeBtn = document.getElementById('menu-close');
+                this.menuLinks = document.querySelectorAll('.menu-overlay a');
+
+                if (!this.overlay || !this.menuBtn) return;
+
+                this.menuBtn.addEventListener('click', () => this.open());
+                this.closeBtn.addEventListener('click', () => this.close());
+
+                this.menuLinks.forEach(link => {
+                    link.addEventListener('click', () => this.close());
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.close();
+                    }
+                });
+            },
+
+            open() {
+                this.overlay.classList.add('active');
+                this.isOpen = true;
+                document.body.style.overflow = 'hidden';
+                this.closeBtn.focus();
+            },
+
+            close() {
+                this.overlay.classList.remove('active');
+                this.isOpen = false;
+                document.body.style.overflow = '';
+                this.menuBtn.focus();
+            }
+        };
+
+        // Form Validation
+        const ContactForm = {
+            form: null,
+            fields: {},
+            submitBtn: null,
+            successMessage: null,
+
+            init() {
+                this.form = document.getElementById('contact-form');
+                if (!this.form) return;
+
+                this.fields = {
+                    name: this.form.querySelector('#name'),
+                    email: this.form.querySelector('#email'),
+                    role: this.form.querySelector('#role')
+                };
+                this.submitBtn = this.form.querySelector('.submit-btn');
+                this.successMessage = document.getElementById('form-success');
+
+                this.fields.name.addEventListener('blur', () => this.validateField('name'));
+                this.fields.email.addEventListener('blur', () => this.validateField('email'));
+                this.fields.email.addEventListener('input', () => this.clearError('email'));
+                this.fields.name.addEventListener('input', () => this.clearError('name'));
+
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            },
+
+            validateField(fieldName) {
+                const field = this.fields[fieldName];
+                const parent = field.closest('.form-group');
+
+                switch (fieldName) {
+                    case 'name':
+                        if (field.value.trim().length < 2) {
+                            this.setError(parent, 'Name must be at least 2 characters');
+                            return false;
+                        }
+                        break;
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value)) {
+                            this.setError(parent, 'Please enter a valid email');
+                            return false;
+                        }
+                        break;
+                }
+
+                this.setSuccess(parent);
+                return true;
+            },
+
+            setError(parent, message) {
+                parent.classList.remove('success');
+                parent.classList.add('error');
+                const errorEl = parent.querySelector('.error-message');
+                if (errorEl) errorEl.textContent = message;
+            },
+
+            setSuccess(parent) {
+                parent.classList.remove('error');
+                parent.classList.add('success');
+            },
+
+            clearError(fieldName) {
+                const field = this.fields[fieldName];
+                const parent = field.closest('.form-group');
+                parent.classList.remove('error');
+            },
+
+            validateAll() {
+                let isValid = true;
+                isValid = this.validateField('name') && isValid;
+                isValid = this.validateField('email') && isValid;
+                return isValid;
+            },
+
+            async handleSubmit(e) {
+                e.preventDefault();
+
+                if (!this.validateAll()) {
+                    gsap.to(this.form, {
+                        x: [-10, 10, -10, 10, 0],
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                    return;
+                }
+
+                this.submitBtn.classList.add('loading');
+                this.submitBtn.disabled = true;
+
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                this.showSuccess();
+            },
+
+            showSuccess() {
+                gsap.to(this.form, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.5,
+                    onComplete: () => {
+                        this.form.style.display = 'none';
+                        this.successMessage.classList.add('active');
+                        gsap.fromTo(this.successMessage,
+                            { opacity: 0, y: 20 },
+                            { opacity: 1, y: 0, duration: 0.5 }
+                        );
+                    }
+                });
+            }
+        };
+
+        // Smooth Scroll
+        const SmoothScroll = {
+            init() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        const href = anchor.getAttribute('href');
+                        if (href === '#') return;
+
+                        const target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            gsap.to(window, {
+                                duration: 1,
+                                scrollTo: { y: target, offsetY: 0 },
+                                ease: "power2.inOut"
+                            });
+                        }
+                    });
+                });
+            }
+        };
+
+        // GSAP Animations
+        const Animations = {
+            init() {
+                gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+                this.heroAnimation();
+                this.statementsAnimation();
+                this.servicesAnimation();
+                this.crisisAnimation();
+                this.medicalIdAnimation();
+                this.howItWorksAnimation();
+            },
+
+            heroAnimation() {
+                const heroTl = gsap.timeline({
+                    defaults: { ease: "power3.out" }
+                });
+
+                gsap.set("#hero .hero-badge", { opacity: 0, y: 30 });
+                gsap.set("#hero .hero-title", { opacity: 0, y: 50 });
+                gsap.set("#hero .hero-subtitle", { opacity: 0, y: 30 });
+                gsap.set("#hero .hero-form", { opacity: 0, y: 30 });
+                gsap.set("#hero .hero-note", { opacity: 0 });
+                gsap.set("#hero .phone-mockup", { opacity: 0, scale: 0.8, y: 50 });
+
+                heroTl
+                    .to("#hero .hero-badge", { opacity: 1, y: 0, duration: 0.8 }, 0.3)
+                    .to("#hero .hero-title", { opacity: 1, y: 0, duration: 1 }, 0.5)
+                    .to("#hero .hero-subtitle", { opacity: 1, y: 0, duration: 0.8 }, 0.8)
+                    .to("#hero .hero-form", { opacity: 1, y: 0, duration: 0.8 }, 1)
+                    .to("#hero .hero-note", { opacity: 1, duration: 0.6 }, 1.2)
+                    .to("#hero .phone-mockup", { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "back.out(1.7)" }, 0.6);
+
+                gsap.to("#hero .phone-mockup", {
+                    y: -15,
+                    duration: 2,
+                    ease: "sine.inOut",
+                    yoyo: true,
+                    repeat: -1
+                });
+            },
+
+            statementsAnimation() {
+                const statements = gsap.utils.toArray(".statement");
+                const statementTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#statements",
+                        start: "top top",
+                        end: "+=300%",
+                        pin: true,
+                        scrub: 1
+                    }
+                });
+
+                statements.forEach((stmt, i) => {
+                    statementTl.to(stmt, {
+                        opacity: 1,
+                        filter: "blur(0px)",
+                        scale: 1,
+                        z: 0,
+                        duration: 1,
+                        ease: "power2.out"
+                    });
+
+                    if (i < statements.length - 1) {
+                        statementTl.to(stmt, {
+                            opacity: 0,
+                            filter: "blur(10px)",
+                            scale: 1.2,
+                            z: 100,
+                            duration: 1,
+                            ease: "power2.in"
+                        }, "+=0.5");
+                    }
+                });
+            },
+
+            servicesAnimation() {
+                const servicesContainer = document.querySelector("#services-container");
+                if (!servicesContainer) return;
+
+                gsap.to(servicesContainer, {
+                    x: () => -(servicesContainer.scrollWidth - window.innerWidth),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#services-wrapper",
+                        pin: true,
+                        scrub: 1,
+                        end: () => "+=" + servicesContainer.scrollWidth,
+                        invalidateOnRefresh: true
+                    }
+                });
+            },
+
+            medicalIdAnimation() {
+                gsap.utils.toArray(".med-id-item").forEach((item, i) => {
+                    gsap.to(item, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        delay: i * 0.15,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: "#medical-id",
+                            start: "top 60%"
+                        }
+                    });
+                });
+            },
+
+            howItWorksAnimation() {
+                gsap.from("#how-it-works-intro .section-badge", {
+                    scrollTrigger: {
+                        trigger: "#how-it-works-intro",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8
+                });
+
+                gsap.from("#how-it-works-intro .section-title", {
+                    scrollTrigger: {
+                        trigger: "#how-it-works-intro",
+                        start: "top 75%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1
+                });
+
+                const hiwList = document.querySelector(".hiw-list");
+                const hiwFill = document.querySelector(".hiw-fill");
+                const hiwListItems = gsap.utils.toArray(".hiw-list li");
+                const hiwSlides = gsap.utils.toArray(".hiw-slide");
+
+                if (!hiwList || !hiwFill || hiwListItems.length === 0) return;
+
+                const listHeight = hiwList.offsetHeight;
+                gsap.set(hiwFill, { height: listHeight });
+
+                const hiwTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".hiw-pin-section",
+                        start: "top top",
+                        end: "+=" + hiwListItems.length * 50 + "%",
+                        pin: true,
+                        scrub: true
+                    }
+                });
+
+                gsap.set(hiwFill, {
+                    scaleY: 1 / hiwListItems.length,
+                    transformOrigin: "top left"
+                });
+
+                hiwListItems.forEach((item, i) => {
+                    const previousItem = hiwListItems[i - 1];
+
+                    if (previousItem) {
+                        hiwTl.set(item, { color: "#8B0000" }, 0.5 * i)
+                            .to(hiwSlides[i], { autoAlpha: 1, duration: 0.2 }, "<")
+                            .set(previousItem, { color: "#9CA3AF" }, "<")
+                            .to(hiwSlides[i - 1], { autoAlpha: 0, duration: 0.2 }, "<");
+                    } else {
+                        gsap.set(item, { color: "#8B0000" });
+                        gsap.set(hiwSlides[i], { autoAlpha: 1 });
+                    }
+                });
+
+                hiwTl.to(hiwFill, {
+                    scaleY: 1,
+                    transformOrigin: "top left",
+                    ease: "none",
+                    duration: hiwTl.duration()
+                }, 0).to({}, { duration: 0.5 });
+            },
+
+            crisisAnimation() {
+                gsap.to("#crisis-line-fill", {
+                    height: "100%",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#crisis",
+                        start: "top 60%",
+                        end: "bottom 80%",
+                        scrub: 1
+                    }
+                });
+
+                gsap.utils.toArray(".crisis-step").forEach((step, i) => {
+                    const dot = step.querySelector(".crisis-dot");
+
+                    gsap.to(step, {
+                        opacity: 1,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: step,
+                            start: "top 75%"
+                        }
+                    });
+
+                    if (dot) {
+                        ScrollTrigger.create({
+                            trigger: step,
+                            start: "top 70%",
+                            onEnter: () => {
+                                dot.style.backgroundColor = "#8B0000";
+                            },
+                            onLeaveBack: () => {
+                                dot.style.backgroundColor = "#F5F5F0";
+                            }
+                        });
+                    }
+                });
+            }
+        };
+
+        // FAQ Accordion
+        const FAQAccordion = {
+            init() {
+                const triggers = document.querySelectorAll('.faq-trigger');
+                if (!triggers.length) return;
+
+                triggers.forEach(trigger => {
+                    trigger.addEventListener('click', () => this.toggle(trigger));
+                });
+            },
+
+            toggle(trigger) {
+                const item = trigger.closest('.faq-item');
+                const content = item.querySelector('.faq-content');
+                const icon = trigger.querySelector('.faq-icon');
+                const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        const otherTrigger = otherItem.querySelector('.faq-trigger');
+                        const otherContent = otherItem.querySelector('.faq-content');
+                        const otherIcon = otherItem.querySelector('.faq-icon');
+
+                        otherTrigger.setAttribute('aria-expanded', 'false');
+                        otherContent.classList.add('hidden');
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                if (isExpanded) {
+                    trigger.setAttribute('aria-expanded', 'false');
+                    content.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    trigger.setAttribute('aria-expanded', 'true');
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            }
+        };
+
+        // Initialize
+        document.addEventListener("DOMContentLoaded", () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            MobileMenu.init();
+            ContactForm.init();
+            SmoothScroll.init();
+            FAQAccordion.init();
+
+            if (!prefersReducedMotion) {
+                Animations.init();
+            }
+
+            // Dynamic year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Hero form
+            const heroForm = document.getElementById('hero-form');
+            if (heroForm) {
+                heroForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thanks for signing up! We\'ll notify you when we launch.');
+                    heroForm.reset();
+                });
+            }
+
+            // Scroll to top
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const heroSection = document.getElementById('hero');
+
+            if (scrollToTopBtn && heroSection) {
+                window.addEventListener('scroll', () => {
+                    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                    if (window.scrollY > heroBottom) {
+                        scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                        scrollToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+                    } else {
+                        scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                        scrollToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                    }
+                });
+
+                scrollToTopBtn.addEventListener('click', () => {
+                    gsap.to(window, { duration: 1.2, scrollTo: { y: 0 }, ease: 'power3.inOut' });
+                });
+            }
+        });
+
+        // Handle resize
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+    </script>
+</body>
+</html>
