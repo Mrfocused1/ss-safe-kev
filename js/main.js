@@ -10,7 +10,7 @@
 const LogoSwitcher = {
     logo: null,
     menuBtn: null,
-    darkSections: ['footer'],
+    darkSections: ['dark-card', 'footer'],
     lightSections: ['hero', 'services-wrapper', 'crisis', 'medical-id', 'how-it-works-intro', 'features', 'faq', 'contact'],
 
     init() {
