@@ -4,6 +4,63 @@
  */
 
 // ==========================================================================
+// Logo Switcher (Light/Dark based on scroll position)
+// ==========================================================================
+
+const LogoSwitcher = {
+    logo: null,
+    menuBtn: null,
+    darkSections: ['problem-hero', 'footer'],
+    lightSections: ['problem-journey', 'problem-solution'],
+
+    init() {
+        this.logo = document.querySelector('nav a[href="index.html"] img');
+        this.menuBtn = document.getElementById('menu-btn');
+        if (!this.logo) return;
+
+        // Set initial state
+        this.updateLogo();
+
+        // Update on scroll
+        window.addEventListener('scroll', () => this.updateLogo(), { passive: true });
+    },
+
+    updateLogo() {
+        const scrollPosition = window.scrollY + 100;
+        let currentSection = null;
+
+        // Find which section we're in
+        [...this.darkSections, ...this.lightSections].forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = window.scrollY + rect.top;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = sectionId;
+                }
+            }
+        });
+
+        // Update logo and menu button based on section
+        if (currentSection && this.darkSections.includes(currentSection)) {
+            this.logo.src = 'assets/logo-light.png';
+            if (this.menuBtn) {
+                this.menuBtn.classList.remove('text-luxury-text');
+                this.menuBtn.classList.add('text-luxury-base');
+            }
+        } else {
+            this.logo.src = 'assets/logo.png';
+            if (this.menuBtn) {
+                this.menuBtn.classList.remove('text-luxury-base');
+                this.menuBtn.classList.add('text-luxury-text');
+            }
+        }
+    }
+};
+
+// ==========================================================================
 // Mobile Menu (Shared)
 // ==========================================================================
 
@@ -412,6 +469,7 @@ const YearUpdate = {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize components
+    LogoSwitcher.init();
     MobileMenu.init();
     YearUpdate.init();
 
