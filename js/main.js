@@ -9,14 +9,16 @@
 
 const LogoSwitcher = {
     logo: null,
+    menuBtn: null,
     darkSections: ['footer'],
     lightSections: ['hero', 'services-wrapper', 'crisis', 'medical-id', 'how-it-works-intro', 'features', 'faq', 'contact'],
 
     init() {
         this.logo = document.querySelector('nav a[href="#hero"] img');
+        this.menuBtn = document.getElementById('menu-btn');
         if (!this.logo) return;
 
-        // Set initial logo
+        // Set initial state
         this.updateLogo();
 
         // Update on scroll
@@ -41,11 +43,19 @@ const LogoSwitcher = {
             }
         });
 
-        // Update logo based on section
+        // Update logo and menu button based on section
         if (currentSection && this.darkSections.includes(currentSection)) {
             this.logo.src = 'assets/logo-light.png';
+            if (this.menuBtn) {
+                this.menuBtn.classList.remove('text-luxury-text');
+                this.menuBtn.classList.add('text-luxury-base');
+            }
         } else {
             this.logo.src = 'assets/logo.png';
+            if (this.menuBtn) {
+                this.menuBtn.classList.remove('text-luxury-base');
+                this.menuBtn.classList.add('text-luxury-text');
+            }
         }
     }
 };
