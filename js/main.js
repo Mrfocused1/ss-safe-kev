@@ -4,6 +4,53 @@
  */
 
 // ==========================================================================
+// Logo Switcher (Light/Dark based on scroll position)
+// ==========================================================================
+
+const LogoSwitcher = {
+    logo: null,
+    darkSections: ['footer'],
+    lightSections: ['hero', 'services-wrapper', 'crisis', 'medical-id', 'how-it-works-intro', 'features', 'faq', 'contact'],
+
+    init() {
+        this.logo = document.querySelector('nav a[href="#hero"] img');
+        if (!this.logo) return;
+
+        // Set initial logo
+        this.updateLogo();
+
+        // Update on scroll
+        window.addEventListener('scroll', () => this.updateLogo(), { passive: true });
+    },
+
+    updateLogo() {
+        const scrollPosition = window.scrollY + (window.innerHeight / 3);
+        let currentSection = null;
+
+        // Find which section we're in
+        [...this.darkSections, ...this.lightSections].forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = window.scrollY + rect.top;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = sectionId;
+                }
+            }
+        });
+
+        // Update logo based on section
+        if (currentSection && this.darkSections.includes(currentSection)) {
+            this.logo.src = 'assets/logo-light.png';
+        } else {
+            this.logo.src = 'assets/logo.png';
+        }
+    }
+};
+
+// ==========================================================================
 // Mobile Menu
 // ==========================================================================
 
@@ -789,6 +836,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    LogoSwitcher.init();
     MobileMenu.init();
     ContactForm.init();
     SmoothScroll.init();
