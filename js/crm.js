@@ -586,7 +586,7 @@ function renderOutreachList() {
           </button>
 
           <button
-            class="px-4 py-2 bg-white text-luxury-accent border-2 border-luxury-accent rounded-lg text-sm font-semibold hover:bg-luxury-accent hover:text-white transition-colors"
+            class="px-4 py-2 bg-white text-luxury-accent border-2 border-luxury-accent rounded-lg text-sm font-semibold hover:bg-red-50 transition-colors"
             onclick="generateAIOutreach(${org.id})"
           >
             Generate Outreach
