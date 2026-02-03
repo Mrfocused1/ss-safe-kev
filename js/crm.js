@@ -2,7 +2,7 @@
 
 // Check authentication
 if (sessionStorage.getItem('admin_authenticated') !== 'true') {
-  window.location.href = '/admin';
+  window.location.href = '/admin.html';
 }
 
 // Outreach Data
@@ -20,7 +20,7 @@ const OUTREACH_DATA = [
       email: 'pudseygrants@bbc.co.uk',
       phone: '0345 609 0015 opt.2'
     },
-    opportunity: 'Apply for a Children in Need Project Grant to support Safe Kev\'s work with young sickle cell patients (aligning with CiN\'s focus on vulnerable children).',
+    opportunity: 'Apply for a Children in Need Project Grant to support Sickle Safe\'s work with young sickle cell patients (aligning with CiN\'s focus on vulnerable children).',
     status: 'not-contacted',
     notes: ''
   },
@@ -36,7 +36,7 @@ const OUTREACH_DATA = [
       email: 'Applications via online calls',
       phone: 'N/A'
     },
-    opportunity: 'Watch for Google.org Impact Challenge calls (e.g. on AI for Social Good) – propose Safe Kev as a tech innovation improving health equity for young people.',
+    opportunity: 'Watch for Google.org Impact Challenge calls (e.g. on AI for Social Good) – propose Sickle Safe as a tech innovation improving health equity for young people.',
     status: 'not-contacted',
     notes: ''
   },
@@ -52,7 +52,7 @@ const OUTREACH_DATA = [
       email: 'information@nesta.org.uk',
       phone: '020 7438 2500'
     },
-    opportunity: 'Seek Nesta seed funding or partnership in a relevant innovation program – e.g. a pilot of Safe Kev\'s digital education tool for young patients.',
+    opportunity: 'Seek Nesta seed funding or partnership in a relevant innovation program – e.g. a pilot of Sickle Safe\'s digital education tool for young patients.',
     status: 'not-contacted',
     notes: ''
   },
@@ -68,7 +68,7 @@ const OUTREACH_DATA = [
       email: 'general.enquiries@tnlcommunityfund.org.uk',
       phone: '0345 410 2030'
     },
-    opportunity: 'Apply for a Reaching Communities grant to scale Safe Kev\'s outreach – it aligns with missions to help young people thrive and address health inequalities.',
+    opportunity: 'Apply for a Reaching Communities grant to scale Sickle Safe\'s outreach – it aligns with missions to help young people thrive and address health inequalities.',
     status: 'not-contacted',
     notes: ''
   },
@@ -84,7 +84,7 @@ const OUTREACH_DATA = [
       email: 'fundinginfo@comicrelief.com',
       phone: '020 7820 2000'
     },
-    opportunity: 'Pitch Safe Kev under Comic Relief\'s Tech for Good initiative – highlighting how the project empowers vulnerable BAME youth through technology (matching Comic Relief\'s focus on innovative solutions to health injustices).',
+    opportunity: 'Pitch Sickle Safe under Comic Relief\'s Tech for Good initiative – highlighting how the project empowers vulnerable BAME youth through technology (matching Comic Relief\'s focus on innovative solutions to health injustices).',
     status: 'not-contacted',
     notes: ''
   },
@@ -100,7 +100,7 @@ const OUTREACH_DATA = [
       email: 'hello@socialtechtrust.org',
       phone: '01865 334000'
     },
-    opportunity: 'Secure support through Social Tech Trust\'s next grant call or incubator – positioning Safe Kev as a scalable digital solution improving health outcomes for young sickle cell patients.',
+    opportunity: 'Secure support through Social Tech Trust\'s next grant call or incubator – positioning Sickle Safe as a scalable digital solution improving health outcomes for young sickle cell patients.',
     status: 'not-contacted',
     notes: ''
   },
@@ -118,7 +118,7 @@ const OUTREACH_DATA = [
       email: 'info@sicklecellsociety.org',
       phone: '020 8961 7795'
     },
-    opportunity: 'Co-create educational content – e.g. embed Safe Kev\'s safety tips into SCS\'s children\'s activities or helpline resources, leveraging SCS\'s reach and clinical expertise to ensure accuracy and national uptake.',
+    opportunity: 'Co-create educational content – e.g. embed Sickle Safe\'s safety tips into SCS\'s children\'s activities or helpline resources, leveraging SCS\'s reach and clinical expertise to ensure accuracy and national uptake.',
     status: 'not-contacted',
     notes: ''
   },
@@ -134,7 +134,7 @@ const OUTREACH_DATA = [
       email: 'admin@oscarbirmingham.org.uk',
       phone: '0121 212 9209'
     },
-    opportunity: 'Joint workshops for youth – collaborate to run Safe Kev "Living Safely with Sickle Cell" workshops for children and parents in Birmingham, combining OSCAR\'s on-the-ground support with Safe Kev\'s safety curriculum.',
+    opportunity: 'Joint workshops for youth – collaborate to run Sickle Safe "Living Safely with Sickle Cell" workshops for children and parents in Birmingham, combining OSCAR\'s on-the-ground support with Sickle Safe\'s safety curriculum.',
     status: 'not-contacted',
     notes: ''
   },
@@ -150,7 +150,7 @@ const OUTREACH_DATA = [
       email: 'admin@sicklecellcaremanchester.co.uk',
       phone: '0161 277 7648'
     },
-    opportunity: 'School outreach in Manchester – team up with SCCM\'s Education & Outreach program to integrate Safe Kev\'s content into school workshops and community events, expanding Safe Kev\'s reach through their networks and NHS partnerships.',
+    opportunity: 'School outreach in Manchester – team up with SCCM\'s Education & Outreach program to integrate Sickle Safe\'s content into school workshops and community events, expanding Sickle Safe\'s reach through their networks and NHS partnerships.',
     status: 'not-contacted',
     notes: ''
   },
@@ -166,7 +166,7 @@ const OUTREACH_DATA = [
       email: 'info@aclt.org',
       phone: '020 3757 7700'
     },
-    opportunity: 'Awareness + Donor Drives – partner on campaigns to educate Safe Kev\'s young audience about blood donation and bone marrow registers. Create a youth-friendly "Safe Blood, Safe Lives" module with ACLT, encouraging teens (and their families) to become donors – boosting donor numbers for sickle cell patients.',
+    opportunity: 'Awareness + Donor Drives – partner on campaigns to educate Sickle Safe\'s young audience about blood donation and bone marrow registers. Create a youth-friendly "Safe Blood, Safe Lives" module with ACLT, encouraging teens (and their families) to become donors – boosting donor numbers for sickle cell patients.',
     status: 'not-contacted',
     notes: ''
   },
@@ -184,7 +184,7 @@ const OUTREACH_DATA = [
       email: 'info@ayph.org.uk',
       phone: '020 7922 7715'
     },
-    opportunity: 'Youth Health Policy & Training – collaborate to include Safe Kev\'s sickle cell safety insights in AYPH\'s guidance for schools or in the Young People\'s Health Partnership forums. This elevates Safe Kev\'s profile in national discussions and ensures young voices with sickle cell are heard in health strategy.',
+    opportunity: 'Youth Health Policy & Training – collaborate to include Sickle Safe\'s sickle cell safety insights in AYPH\'s guidance for schools or in the Young People\'s Health Partnership forums. This elevates Sickle Safe\'s profile in national discussions and ensures young voices with sickle cell are heard in health strategy.',
     status: 'not-contacted',
     notes: ''
   },
@@ -200,7 +200,7 @@ const OUTREACH_DATA = [
       email: 'ymenquiries@youngminds.org.uk',
       phone: '020 7089 5050'
     },
-    opportunity: 'Mental Health Support for Sickle Cell – partner to develop resources on coping with chronic illness, stress and identity (Safe Kev\'s character could front a campaign on resilience). YoungMinds\' expertise in youth mental health plus Safe Kev\'s niche knowledge can produce tailored guides for sickle cell warriors dealing with anxiety or school pressures.',
+    opportunity: 'Mental Health Support for Sickle Cell – partner to develop resources on coping with chronic illness, stress and identity (Sickle Safe\'s character could front a campaign on resilience). YoungMinds\' expertise in youth mental health plus Sickle Safe\'s niche knowledge can produce tailored guides for sickle cell warriors dealing with anxiety or school pressures.',
     status: 'not-contacted',
     notes: ''
   },
@@ -216,7 +216,7 @@ const OUTREACH_DATA = [
       email: 'partnerships@themix.org.uk',
       phone: '020 7009 2500'
     },
-    opportunity: 'Digital Content & Signposting – integrate Safe Kev\'s safety tips into The Mix\'s online advice library (e.g. create co-branded articles or videos on managing sickle cell at school, seeking help during a pain crisis). The Mix can also signpost young users with SCD to Safe Kev\'s tools, enhancing both platforms\' reach.',
+    opportunity: 'Digital Content & Signposting – integrate Sickle Safe\'s safety tips into The Mix\'s online advice library (e.g. create co-branded articles or videos on managing sickle cell at school, seeking help during a pain crisis). The Mix can also signpost young users with SCD to Sickle Safe\'s tools, enhancing both platforms\' reach.',
     status: 'not-contacted',
     notes: ''
   },
@@ -232,7 +232,7 @@ const OUTREACH_DATA = [
       email: 'partnerships@ukyouth.org',
       phone: '020 4526 8371'
     },
-    opportunity: 'National Outreach & Accreditation – work with UK Youth to incorporate Safe Kev\'s program into their member clubs\' activities. Safe Kev could become a module in UK Youth\'s Award schemes or a feature at the annual Youth Achievement Awards – scaling impact through UK Youth\'s vast network while empowering young leaders to champion sickle cell safety in their communities.',
+    opportunity: 'National Outreach & Accreditation – work with UK Youth to incorporate Sickle Safe\'s program into their member clubs\' activities. Sickle Safe could become a module in UK Youth\'s Award schemes or a feature at the annual Youth Achievement Awards – scaling impact through UK Youth\'s vast network while empowering young leaders to champion sickle cell safety in their communities.',
     status: 'not-contacted',
     notes: ''
   },
@@ -248,7 +248,7 @@ const OUTREACH_DATA = [
       email: 'enquiries@rsph.org.uk',
       phone: '020 7265 7300'
     },
-    opportunity: 'Peer Education in Schools – collaborate with RSPH to develop a sickle cell safety module within the Young Health Champion program. Trained youth champions could use Safe Kev materials to educate peers about sickle cell (reducing stigma, improving emergency responses in schools). RSPH\'s accreditation would lend credibility and embed Safe Kev into school health curricula nationwide.',
+    opportunity: 'Peer Education in Schools – collaborate with RSPH to develop a sickle cell safety module within the Young Health Champion program. Trained youth champions could use Sickle Safe materials to educate peers about sickle cell (reducing stigma, improving emergency responses in schools). RSPH\'s accreditation would lend credibility and embed Sickle Safe into school health curricula nationwide.',
     status: 'not-contacted',
     notes: ''
   },
@@ -266,7 +266,7 @@ const OUTREACH_DATA = [
       email: 'info@pshe-association.org.uk',
       phone: '020 4571 6239'
     },
-    opportunity: 'Curriculum Integration – work with the PSHE Association to create age-appropriate lesson plans about sickle cell (e.g. understanding genetics, living with a health condition, empathy for classmates with SCD). A Safe Kev PSHE lesson pack – quality-assured by the Association – could be distributed to member schools, embedding the project into classrooms nationwide.',
+    opportunity: 'Curriculum Integration – work with the PSHE Association to create age-appropriate lesson plans about sickle cell (e.g. understanding genetics, living with a health condition, empathy for classmates with SCD). A Sickle Safe PSHE lesson pack – quality-assured by the Association – could be distributed to member schools, embedding the project into classrooms nationwide.',
     status: 'not-contacted',
     notes: ''
   },
@@ -282,7 +282,7 @@ const OUTREACH_DATA = [
       email: 'partnerships@nhsbt.nhs.uk',
       phone: '0300 123 23 23'
     },
-    opportunity: 'School Blood Donation Awareness – partner with NHSBT to deliver joint sessions in secondary schools: Safe Kev can introduce why blood donation matters for sickle cell patients (in an age-friendly way), while NHSBT provides the medical context and a call-to-action for older students. This collaboration could fit into NHSBT\'s community outreach and help build a future generation of diverse blood donors.',
+    opportunity: 'School Blood Donation Awareness – partner with NHSBT to deliver joint sessions in secondary schools: Sickle Safe can introduce why blood donation matters for sickle cell patients (in an age-friendly way), while NHSBT provides the medical context and a call-to-action for older students. This collaboration could fit into NHSBT\'s community outreach and help build a future generation of diverse blood donors.',
     status: 'not-contacted',
     notes: ''
   },
@@ -298,7 +298,7 @@ const OUTREACH_DATA = [
       email: 'Via website contact form',
       phone: '020 7942 4777'
     },
-    opportunity: 'Interactive Learning – collaborate to feature Safe Kev in a science engagement context – e.g. a "Sickle Cell Science" interactive workshop or an exhibit during British Science Week. This would contextualize Safe Kev\'s safety messages within biology (genetics, blood health), making the learning both fun and scientifically enriching for school groups.',
+    opportunity: 'Interactive Learning – collaborate to feature Sickle Safe in a science engagement context – e.g. a "Sickle Cell Science" interactive workshop or an exhibit during British Science Week. This would contextualize Sickle Safe\'s safety messages within biology (genetics, blood health), making the learning both fun and scientifically enriching for school groups.',
     status: 'not-contacted',
     notes: ''
   },
@@ -316,7 +316,7 @@ const OUTREACH_DATA = [
       email: 'Via website',
       phone: '+44 1276 698370'
     },
-    opportunity: 'Sickle Cell Advocacy Campaign – partner on expanding "Code Red", using Safe Kev as a youth-friendly ambassador. Novartis could provide funding and medical expertise to develop multimedia content (animations, apps) teaching young patients about treatments and empowering them to manage pain safely. This aligns with Novartis\' aim of "improving lives and tackling health inequalities in partnership with patient communities".',
+    opportunity: 'Sickle Cell Advocacy Campaign – partner on expanding "Code Red", using Sickle Safe as a youth-friendly ambassador. Novartis could provide funding and medical expertise to develop multimedia content (animations, apps) teaching young patients about treatments and empowering them to manage pain safely. This aligns with Novartis\' aim of "improving lives and tackling health inequalities in partnership with patient communities".',
     status: 'not-contacted',
     notes: ''
   },
@@ -332,7 +332,7 @@ const OUTREACH_DATA = [
       email: 'groupfoundation@vodafone.com',
       phone: '+44 7500 9592'
     },
-    opportunity: 'Digital Access & Scale – collaborate to scale Safe Kev through mobile technology. Develop a Safe Kev mobile app or SMS service for managing sickle cell emergencies, supported by Vodafone\'s tech expertise and funding. Vodafone Foundation\'s focus on connectivity could help bring Safe Kev\'s life-saving guidance to families in hard-to-reach or low-income UK communities.',
+    opportunity: 'Digital Access & Scale – collaborate to scale Sickle Safe through mobile technology. Develop a Sickle Safe mobile app or SMS service for managing sickle cell emergencies, supported by Vodafone\'s tech expertise and funding. Vodafone Foundation\'s focus on connectivity could help bring Sickle Safe\'s life-saving guidance to families in hard-to-reach or low-income UK communities.',
     status: 'not-contacted',
     notes: ''
   },
@@ -348,7 +348,7 @@ const OUTREACH_DATA = [
       email: 'Via website',
       phone: '020 8047 5000'
     },
-    opportunity: 'Capacity Building & Recognition – seek support via GSK\'s charitable grants or mentorship. Safe Kev could apply for a GSK IMPACT Award, which offers unrestricted funding and training for health charities. GSK\'s backing would not only fund expansion but also provide credibility and expert mentoring, enhancing Safe Kev\'s long-term sustainability.',
+    opportunity: 'Capacity Building & Recognition – seek support via GSK\'s charitable grants or mentorship. Sickle Safe could apply for a GSK IMPACT Award, which offers unrestricted funding and training for health charities. GSK\'s backing would not only fund expansion but also provide credibility and expert mentoring, enhancing Sickle Safe\'s long-term sustainability.',
     status: 'not-contacted',
     notes: ''
   },
@@ -364,7 +364,7 @@ const OUTREACH_DATA = [
       email: 'Via online form',
       phone: 'N/A'
     },
-    opportunity: 'Technology Enhancement – partner to improve Safe Kev\'s digital delivery. Microsoft could support development of an AI-powered chatbot that answers questions from kids with sickle cell (using Azure AI services), or offer free Azure cloud services for hosting Safe Kev\'s platform. This partnership would amplify Safe Kev\'s technical capabilities, aligning with Microsoft\'s mission to "empower nonprofits to do more good" through technology.',
+    opportunity: 'Technology Enhancement – partner to improve Sickle Safe\'s digital delivery. Microsoft could support development of an AI-powered chatbot that answers questions from kids with sickle cell (using Azure AI services), or offer free Azure cloud services for hosting Sickle Safe\'s platform. This partnership would amplify Sickle Safe\'s technical capabilities, aligning with Microsoft\'s mission to "empower nonprofits to do more good" through technology.',
     status: 'not-contacted',
     notes: ''
   },
@@ -380,7 +380,7 @@ const OUTREACH_DATA = [
       email: 'Via website',
       phone: 'N/A'
     },
-    opportunity: 'Energy Safety Angle – If Safe Kev covers home safety (e.g. avoiding temperature extremes which can trigger sickle crises), an energy company could partner to distribute Safe Kev\'s tips to families (through newsletters or school programs). It\'s a creative angle linking health and energy usage (like ensuring warmth in winter for sickle cell patients). This demonstrates corporate social responsibility by caring for medically vulnerable customers.',
+    opportunity: 'Energy Safety Angle – If Sickle Safe covers home safety (e.g. avoiding temperature extremes which can trigger sickle crises), an energy company could partner to distribute Sickle Safe\'s tips to families (through newsletters or school programs). It\'s a creative angle linking health and energy usage (like ensuring warmth in winter for sickle cell patients). This demonstrates corporate social responsibility by caring for medically vulnerable customers.',
     status: 'not-contacted',
     notes: ''
   }
