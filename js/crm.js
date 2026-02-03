@@ -586,13 +586,10 @@ function renderOutreachList() {
           </button>
 
           <button
-            class="flex items-center gap-2 px-4 py-2 bg-luxury-accent text-white rounded-lg text-sm font-semibold hover-luxury transition-colors"
+            class="px-4 py-2 bg-white text-luxury-accent border-2 border-luxury-accent rounded-lg text-sm font-semibold hover:bg-luxury-accent hover:text-white transition-colors"
             onclick="generateAIOutreach(${org.id})"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-            <span>Generate AI Outreach</span>
+            Generate Outreach
           </button>
         </div>
 
