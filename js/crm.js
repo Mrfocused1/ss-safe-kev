@@ -573,16 +573,28 @@ function renderOutreachList() {
           </div>
         </div>
 
-        <!-- Expandable Details -->
-        <button
-          class="flex items-center gap-2 text-sm font-semibold luxury-accent hover:underline mb-2"
-          onclick="toggleDetails(${org.id})"
-        >
-          <span>View Details</span>
-          <svg id="expand-icon-${org.id}" class="w-4 h-4 expand-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <button
+            class="flex items-center gap-2 text-sm font-semibold luxury-accent hover:underline"
+            onclick="toggleDetails(${org.id})"
+          >
+            <span>View Details</span>
+            <svg id="expand-icon-${org.id}" class="w-4 h-4 expand-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+
+          <button
+            class="flex items-center gap-2 px-4 py-2 bg-luxury-accent text-white rounded-lg text-sm font-semibold hover-luxury transition-colors"
+            onclick="generateAIOutreach(${org.id})"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <span>Generate AI Outreach</span>
+          </button>
+        </div>
 
         <div id="details-${org.id}" class="details-content">
           <div class="border-t border-gray-200 pt-4 space-y-3">
@@ -706,7 +718,161 @@ function exportToCSV() {
   window.URL.revokeObjectURL(url);
 }
 
+// AI Outreach Generation
+let currentOrgId = null;
+let generatedEmail = '';
+const loadingMessages = [
+  { text: 'Analyzing organization...', subtext: 'Researching their mission and programs' },
+  { text: 'Researching partnership opportunities...', subtext: 'Finding the best collaboration angles' },
+  { text: 'Crafting personalized outreach...', subtext: 'Writing a compelling email' },
+  { text: 'Finalizing email...', subtext: 'Adding finishing touches' }
+];
+let loadingInterval = null;
+
+function generateAIOutreach(orgId) {
+  currentOrgId = orgId;
+  const org = OUTREACH_DATA.find(o => o.id === orgId);
+
+  if (!org) {
+    console.error('Organization not found');
+    return;
+  }
+
+  // Open bottom sheet
+  openBottomSheet();
+
+  // Show loading state
+  showLoadingState();
+
+  // Start rotating loading messages
+  let messageIndex = 0;
+  loadingInterval = setInterval(() => {
+    messageIndex = (messageIndex + 1) % loadingMessages.length;
+    document.getElementById('loading-text').textContent = loadingMessages[messageIndex].text;
+    document.getElementById('loading-subtext').textContent = loadingMessages[messageIndex].subtext;
+  }, 2500);
+
+  // Call API to generate email
+  fetch('/api/generate-outreach', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      organizationName: org.name,
+      website: org.website,
+      description: org.description,
+      programs: org.programs,
+      contact: org.contact,
+      opportunity: org.opportunity
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      clearInterval(loadingInterval);
+
+      if (data.success) {
+        generatedEmail = data.email;
+        showEmailContent(org.contact.email, data.email);
+      } else {
+        showErrorState(data.error || 'Failed to generate email');
+      }
+    })
+    .catch(error => {
+      clearInterval(loadingInterval);
+      console.error('Error generating outreach:', error);
+      showErrorState('Network error. Please check your connection and try again.');
+    });
+}
+
+function openBottomSheet() {
+  const sheet = document.getElementById('ai-bottom-sheet');
+  const content = document.getElementById('bottom-sheet-content');
+
+  sheet.classList.remove('hidden');
+
+  // Trigger animation
+  setTimeout(() => {
+    content.classList.remove('translate-y-full');
+    content.classList.add('translate-y-0');
+  }, 10);
+}
+
+function closeBottomSheet() {
+  const content = document.getElementById('bottom-sheet-content');
+
+  content.classList.remove('translate-y-0');
+  content.classList.add('translate-y-full');
+
+  setTimeout(() => {
+    document.getElementById('ai-bottom-sheet').classList.add('hidden');
+    resetBottomSheet();
+  }, 300);
+
+  if (loadingInterval) {
+    clearInterval(loadingInterval);
+    loadingInterval = null;
+  }
+}
+
+function resetBottomSheet() {
+  document.getElementById('ai-loading').classList.add('hidden');
+  document.getElementById('ai-email-content').classList.add('hidden');
+  document.getElementById('ai-error').classList.add('hidden');
+}
+
+function showLoadingState() {
+  resetBottomSheet();
+  document.getElementById('ai-loading').classList.remove('hidden');
+  document.getElementById('loading-text').textContent = loadingMessages[0].text;
+  document.getElementById('loading-subtext').textContent = loadingMessages[0].subtext;
+}
+
+function showEmailContent(recipient, email) {
+  resetBottomSheet();
+  document.getElementById('email-recipient').textContent = recipient;
+  document.getElementById('email-body').textContent = email;
+  document.getElementById('ai-email-content').classList.remove('hidden');
+}
+
+function showErrorState(message) {
+  resetBottomSheet();
+  document.getElementById('error-message').textContent = message;
+  document.getElementById('ai-error').classList.remove('hidden');
+}
+
+function regenerateEmail() {
+  if (currentOrgId) {
+    generateAIOutreach(currentOrgId);
+  }
+}
+
+function copyEmailToClipboard() {
+  const emailBody = document.getElementById('email-body').textContent;
+
+  navigator.clipboard.writeText(emailBody).then(() => {
+    const btn = document.getElementById('copy-email-btn');
+    const originalHTML = btn.innerHTML;
+
+    btn.innerHTML = `
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+      <span>Copied!</span>
+    `;
+
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    alert('Failed to copy to clipboard');
+  });
+}
+
 // Make functions globally accessible
 window.toggleDetails = toggleDetails;
 window.updateStatus = updateStatus;
 window.updateNotes = updateNotes;
+window.generateAIOutreach = generateAIOutreach;
+window.closeBottomSheet = closeBottomSheet;
+window.regenerateEmail = regenerateEmail;
+window.copyEmailToClipboard = copyEmailToClipboard;
