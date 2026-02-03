@@ -28,6 +28,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.5.1",
     "playwright": "^1.57.0"
   }
 }

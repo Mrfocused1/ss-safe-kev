@@ -1188,6 +1188,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
+    <!-- Analytics -->
+    <script src="js/analytics.js"></script>
+
     <!-- Main JavaScript -->
     <script src="js/main.js"></script>
 
@@ -1198,10 +1201,35 @@
         // Hero form handling
         const heroForm = document.getElementById('hero-form');
         if (heroForm) {
-            heroForm.addEventListener('submit', (e) => {
+            heroForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                alert('Thanks for signing up! We\'ll notify you when we launch.');
-                heroForm.reset();
+                const email = heroForm.querySelector('input[type="email"]').value;
+                const btn = heroForm.querySelector('button');
+
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch('/api/submit-form', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            formType: 'hero_signup',
+                            email,
+                            sessionId: window.Analytics?.sessionId
+                        })
+                    });
+
+                    if (response.ok) {
+                        heroForm.innerHTML = '<p class="text-luxury-accent text-lg">✓ Thanks! We\'ll notify you when we launch.</p>';
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    alert('Error submitting. Please try again.');
+                    btn.disabled = false;
+                    btn.textContent = 'Get Early Access';
+                }
             });
         }
 

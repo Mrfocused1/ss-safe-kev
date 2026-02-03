@@ -404,6 +404,9 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Analytics -->
+    <script src="js/analytics.js"></script>
+
     <script>
         // Sparkle Effect Generation
         const sparklesContainer = document.getElementById('sparkles-container');
@@ -541,6 +544,41 @@
                 document.body.style.overflow = '';
             });
         });
+
+        // Gala Mailing List Form Handling
+        const mailingForm = document.querySelector('#mailing-list form');
+        if (mailingForm) {
+            mailingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = mailingForm.querySelector('input[type="email"]').value;
+                const btn = mailingForm.querySelector('button');
+
+                btn.disabled = true;
+                btn.textContent = 'Subscribing...';
+
+                try {
+                    const response = await fetch('/api/submit-form', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            formType: 'gala_mailing',
+                            email,
+                            sessionId: window.Analytics?.sessionId
+                        })
+                    });
+
+                    if (response.ok) {
+                        mailingForm.innerHTML = '<p class="text-gala-gold text-lg">✓ You\'re on the list!</p>';
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    alert('Error submitting. Please try again.');
+                    btn.disabled = false;
+                    btn.textContent = 'Subscribe';
+                }
+            });
+        }
 
     </script>
 </body>

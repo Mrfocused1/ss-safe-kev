@@ -216,15 +216,29 @@ const ContactForm = {
         this.submitBtn.classList.add('loading');
         this.submitBtn.disabled = true;
 
-        // Simulate API call (replace with actual endpoint)
-        await this.simulateSubmission();
+        try {
+            const response = await fetch('/api/submit-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    formType: 'contact_form',
+                    email: this.fields.email.value,
+                    name: this.fields.name.value,
+                    role: this.fields.role.value,
+                    sessionId: window.Analytics?.sessionId
+                })
+            });
 
-        // Success!
-        this.showSuccess();
-    },
-
-    simulateSubmission() {
-        return new Promise(resolve => setTimeout(resolve, 1500));
+            if (response.ok) {
+                this.showSuccess();
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            alert('Error submitting. Please try again.');
+            this.submitBtn.classList.remove('loading');
+            this.submitBtn.disabled = false;
+        }
     },
 
     showSuccess() {
