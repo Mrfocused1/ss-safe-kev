@@ -354,25 +354,31 @@
     </section>
 
     <!-- Mailing List CTA -->
-    <section id="mailing-list" class="py-24 relative bg-luxury-base">
-        <div class="container mx-auto px-6 max-w-3xl text-center">
-            <div class="bg-white border border-luxury-concrete p-8 md:p-16 rounded-sm relative overflow-hidden gsap-scale-up shadow-sm">
-                <!-- Decorative Corner -->
-                <div class="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-luxury-accent/30"></div>
-                <div class="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-luxury-accent/30"></div>
+    <section id="mailing-list" class="py-24 relative overflow-hidden">
+        <!-- Background image -->
+        <div class="absolute inset-0">
+            <img src="assets/images/gala-couple.jpg" alt="" class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-black/65"></div>
+        </div>
 
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-luxury-text">Be The First To Know</h2>
-                <p class="font-sans text-sm text-gray-500 mb-8">
+        <div class="container mx-auto px-6 max-w-3xl text-center relative z-10">
+            <div class="border border-white/20 p-8 md:p-16 rounded-sm relative overflow-hidden gsap-scale-up" style="background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);">
+                <!-- Decorative Corner -->
+                <div class="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-white/30"></div>
+                <div class="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-white/30"></div>
+
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-white">Be The First To Know</h2>
+                <p class="font-sans text-sm text-white/70 mb-8">
                     Sign up for exclusive updates on ticket releases, special guests, and sponsorship opportunities.
                 </p>
 
                 <form class="flex flex-col md:flex-row gap-4">
                     <input type="email" placeholder="Your Email Address" class="flex-1 gala-input px-6 py-4 font-sans text-sm tracking-wide rounded-sm">
-                    <button type="submit" class="bg-luxury-accent text-white px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:bg-luxury-dark transition-colors duration-300 rounded-sm">
+                    <button type="submit" class="bg-luxury-accent text-white px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-luxury-dark transition-colors duration-300 rounded-sm">
                         Subscribe
                     </button>
                 </form>
-                <p class="text-gray-400 text-[10px] mt-4 font-sans">
+                <p class="text-white/40 text-[10px] mt-4 font-sans">
                     By subscribing, you agree to receive updates from us. We respect your privacy.
                 </p>
             </div>
