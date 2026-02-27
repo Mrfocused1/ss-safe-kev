@@ -120,6 +120,15 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
+        /* Hero video fade-in */
+        @keyframes hero-dark-fade {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        #hero-fade-overlay {
+            animation: hero-dark-fade 1.8s ease-in-out 0.3s forwards;
+        }
+
         /* Smooth Anchor Scroll Offset */
         html {
             scroll-padding-top: 80px;
@@ -132,16 +141,16 @@
     <div id="sparkles-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-luxury-base/90 backdrop-blur-md border-b border-luxury-concrete" id="navbar">
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-transparent border-b border-white/10" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <a href="index.html">
-                    <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto">
+                    <img src="assets/logo-light.png" alt="SickleSafe" class="h-4 md:h-5 w-auto">
                 </a>
             </div>
 
             <!-- Menu Button -->
-            <button id="mobile-menu-btn" class="text-luxury-text uppercase tracking-[0.2em] text-xs font-medium hover:text-luxury-accent transition-colors">
+            <button id="mobile-menu-btn" class="text-white uppercase tracking-[0.2em] text-xs font-medium hover:text-luxury-accent transition-colors">
                 Menu
             </button>
         </div>
@@ -164,35 +173,41 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-luxury-base pt-20">
-        <!-- Subtle Background Elements -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-luxury-accent rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-luxury-text rounded-full blur-[150px]"></div>
-        </div>
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
 
-        <div class="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="assets/images/gala-hero.mp4" type="video/mp4">
+        </video>
 
-            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight opacity-0 animate-fade-up mt-12 text-luxury-text">
+        <!-- Permanent dark overlay for text legibility -->
+        <div class="absolute inset-0 bg-black/55 z-10"></div>
+
+        <!-- Dark fade-in overlay (animates from black to transparent) -->
+        <div class="absolute inset-0 bg-black z-20 pointer-events-none" id="hero-fade-overlay"></div>
+
+        <div class="container mx-auto px-6 relative z-30 text-center flex flex-col items-center">
+
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight opacity-0 animate-fade-up mt-12 text-white">
                 A Night Without<br>
                 <span class="accent-text-gradient italic">Sickle Cell</span>
             </h1>
 
-            <p class="font-sans text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-up">
+            <p class="font-sans text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-up">
                 An evening of glamour, celebration, and hope in honour of those living with sickle cell and the warriors who stand beside them.
             </p>
 
             <div class="flex flex-col items-center gap-4 mb-12 opacity-0 animate-fade-up">
-                <div class="h-12 w-[1px] bg-luxury-accent mb-2"></div>
-                <span class="font-sans text-lg tracking-widest uppercase text-luxury-text">June 19, 2026</span>
-                <span class="font-serif italic text-gray-400">World Sickle Cell Day</span>
+                <div class="h-12 w-[1px] bg-white/50 mb-2"></div>
+                <span class="font-sans text-lg tracking-widest uppercase text-white">June 19, 2026</span>
+                <span class="font-serif italic text-white/50">World Sickle Cell Day</span>
             </div>
 
             <div class="flex flex-col md:flex-row gap-6 opacity-0 animate-fade-up">
-                <a href="#mailing-list" class="bg-luxury-accent text-white px-10 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:bg-luxury-dark transition-colors duration-300">
+                <a href="#mailing-list" class="bg-luxury-accent text-white px-10 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-luxury-dark transition-colors duration-300">
                     Join Mailing List
                 </a>
-                <a href="#partners" class="border border-luxury-text/30 text-luxury-text px-10 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:border-luxury-accent hover:text-luxury-accent transition-colors duration-300">
+                <a href="#partners" class="border border-white/40 text-white px-10 py-4 font-sans text-sm font-bold uppercase tracking-widest hover:border-luxury-accent hover:text-luxury-accent transition-colors duration-300">
                     Become a Sponsor
                 </a>
             </div>
@@ -513,12 +528,16 @@
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-2', 'shadow-sm');
-                navbar.classList.remove('py-4');
+            if (window.scrollY > 80) {
+                navbar.classList.add('py-2', 'bg-luxury-base/95', 'backdrop-blur-md', 'border-luxury-concrete', 'shadow-sm');
+                navbar.classList.remove('py-4', 'bg-transparent', 'border-white/10');
+                navbar.querySelector('img').src = 'assets/logo.png';
+                navbar.querySelector('button').classList.replace('text-white', 'text-luxury-text');
             } else {
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-2', 'shadow-sm');
+                navbar.classList.add('py-4', 'bg-transparent', 'border-white/10');
+                navbar.classList.remove('py-2', 'bg-luxury-base/95', 'backdrop-blur-md', 'border-luxury-concrete', 'shadow-sm');
+                navbar.querySelector('img').src = 'assets/logo-light.png';
+                navbar.querySelector('button').classList.replace('text-luxury-text', 'text-white');
             }
         });
 
