@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | SickleSafe</title>
+
+    <meta name="description" content="Discover organisations, charities, and communities working to support those living with Sickle Cell Disease. Find upcoming events, resources, and ways to get involved.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            base: '#F5F5F0',
+                            dark: '#1A1A1A',
+                            accent: '#8B0000',
+                            text: '#2C2C2C',
+                            concrete: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        body {
+            background-color: #F5F5F0;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: #8B0000;
+            color: white;
+        }
+
+        /* Noise overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnPjxmaWx0ZXIgaWQ9J25vaXNlJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42JyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI25vaXNlKScgb3BhY2l0eT0nMC4wNScvPjwvc3ZnPg==");
+            opacity: 0.4;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F5F0; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
+        * { scrollbar-width: thin; scrollbar-color: #ccc #F5F5F0; }
+
+        /* Accent divider */
+        .accent-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8B0000, transparent);
+            width: 100%;
+            opacity: 0.25;
+        }
+
+        /* Org cards */
+        .org-card {
+            background: #fff;
+            border: 1px solid #E0E0E0;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .org-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139,0,0,0.3);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+        }
+
+        /* Event cards */
+        .event-card {
+            background: #fff;
+            border: 1px solid #E0E0E0;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+        }
+
+        /* Category pill */
+        .cat-pill {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+        .cat-sickle-cell  { background: rgba(139,0,0,0.08); color: #8B0000; }
+        .cat-advocacy     { background: rgba(30,70,140,0.08); color: #1e468c; }
+        .cat-research     { background: rgba(0,110,80,0.08); color: #006e50; }
+        .cat-youth        { background: rgba(140,80,0,0.09); color: #7a4a00; }
+        .cat-nhs          { background: rgba(0,94,184,0.08); color: #005eb8; }
+        .cat-community    { background: rgba(80,0,120,0.08); color: #500078; }
+
+        /* Filter tabs */
+        .filter-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 7px 18px;
+            border: 1px solid #E0E0E0;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 2px;
+        }
+        .filter-btn:hover { border-color: #8B0000; color: #8B0000; }
+        .filter-btn.active { background: #8B0000; border-color: #8B0000; color: #fff; }
+
+        /* Event date badge */
+        .date-badge {
+            background: #8B0000;
+            color: white;
+            min-width: 56px;
+            text-align: center;
+        }
+
+        /* Hero gradient text */
+        .accent-text-gradient {
+            background: linear-gradient(to right, #8B0000, #C0392B, #8B0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* Menu overlay */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: #1A1A1A;
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.77,0,0.18,1);
+        }
+        .menu-overlay.active { transform: translateX(0); }
+
+        /* Animate in */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        html { scroll-padding-top: 80px; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-5 flex justify-between items-center" id="navbar">
+        <a href="index.html" aria-label="SickleSafe Home">
+            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto" id="nav-logo">
+        </a>
+        <button id="menu-btn" class="text-luxury-text text-xs uppercase tracking-[0.18em] font-medium hover:text-luxury-accent transition-colors">
+            Menu
+        </button>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+        <div class="flex justify-end p-6">
+            <button id="menu-close" class="text-white text-xs uppercase tracking-widest hover:text-luxury-accent transition-colors">Close</button>
+        </div>
+        <nav class="flex flex-col items-center justify-center flex-1 gap-8 text-center">
+            <a href="index.html"    class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Home</a>
+            <a href="problem.html"  class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">The Problem</a>
+            <a href="community.html" class="text-luxury-accent text-3xl font-serif">Community</a>
+            <a href="gala.html"     class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Gala</a>
+        </nav>
+    </div>
+
+    <!-- ================================================================
+         HERO
+    ================================================================ -->
+    <header class="pt-36 pb-20 px-6 md:px-10 max-w-5xl mx-auto">
+        <div class="fade-up">
+            <span class="cat-pill cat-community mb-6 inline-block">Community</span>
+            <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-6">
+                Together, we're<br>
+                <span class="accent-text-gradient italic">stronger.</span>
+            </h1>
+            <p class="font-sans text-lg text-luxury-text/60 max-w-xl leading-relaxed">
+                Discover the organisations, charities, and communities working every day to support, advocate for, and empower people living with Sickle Cell Disease.
+            </p>
+        </div>
+    </header>
+
+    <div class="accent-divider"></div>
+
+    <!-- ================================================================
+         UPCOMING EVENTS
+    ================================================================ -->
+    <section class="py-20 px-6 md:px-10 max-w-6xl mx-auto" id="events">
+        <div class="mb-12 fade-up">
+            <span class="font-sans text-xs uppercase tracking-[0.18em] text-luxury-accent mb-3 block">What's On</span>
+            <h2 class="font-serif text-4xl md:text-5xl">Upcoming Events</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="events-grid">
+
+            <!-- Event 1 -->
+            <article class="event-card rounded-sm overflow-hidden fade-up">
+                <div class="bg-luxury-dark p-6 flex gap-4 items-start">
+                    <div class="date-badge rounded-sm px-3 py-2 flex-shrink-0">
+                        <div class="font-serif text-2xl leading-none">19</div>
+                        <div class="font-sans text-[10px] uppercase tracking-wider mt-1">Jun</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl text-white leading-snug">World Sickle Cell Day</h3>
+                        <p class="font-sans text-xs text-white/50 mt-1 uppercase tracking-wider">Global · Annual</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="font-sans text-sm text-luxury-text/70 leading-relaxed mb-4">
+                        Held every June 19th, World Sickle Cell Day raises awareness of the disease and the challenges faced by patients and their families worldwide.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="cat-pill cat-sickle-cell">Awareness</span>
+                        <a href="https://www.sicklecelldisease.org" target="_blank" rel="noopener noreferrer"
+                           class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Event 2 -->
+            <article class="event-card rounded-sm overflow-hidden fade-up">
+                <div class="bg-luxury-dark p-6 flex gap-4 items-start">
+                    <div class="date-badge rounded-sm px-3 py-2 flex-shrink-0">
+                        <div class="font-serif text-2xl leading-none">TBC</div>
+                        <div class="font-sans text-[10px] uppercase tracking-wider mt-1">2026</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl text-white leading-snug">Sickle Cell Society Annual Conference</h3>
+                        <p class="font-sans text-xs text-white/50 mt-1 uppercase tracking-wider">London, UK</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="font-sans text-sm text-luxury-text/70 leading-relaxed mb-4">
+                        The UK's leading annual gathering of patients, clinicians, researchers and advocates discussing the latest in SCD care and treatment.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="cat-pill cat-sickle-cell">Conference</span>
+                        <a href="https://www.sicklecellsociety.org" target="_blank" rel="noopener noreferrer"
+                           class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Event 3 -->
+            <article class="event-card rounded-sm overflow-hidden fade-up">
+                <div class="bg-luxury-dark p-6 flex gap-4 items-start">
+                    <div class="date-badge rounded-sm px-3 py-2 flex-shrink-0">
+                        <div class="font-serif text-2xl leading-none">TBC</div>
+                        <div class="font-sans text-[10px] uppercase tracking-wider mt-1">2026</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl text-white leading-snug">OSCAR Birmingham Community Day</h3>
+                        <p class="font-sans text-xs text-white/50 mt-1 uppercase tracking-wider">Birmingham, UK</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="font-sans text-sm text-luxury-text/70 leading-relaxed mb-4">
+                        A community open day offering advice, support, testing information, and connection for patients and families living with sickle cell in the Midlands.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="cat-pill cat-community">Community</span>
+                        <a href="https://www.oscarbirmingham.org.uk" target="_blank" rel="noopener noreferrer"
+                           class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Event 4 -->
+            <article class="event-card rounded-sm overflow-hidden fade-up">
+                <div class="bg-luxury-dark p-6 flex gap-4 items-start">
+                    <div class="date-badge rounded-sm px-3 py-2 flex-shrink-0">
+                        <div class="font-serif text-2xl leading-none">TBC</div>
+                        <div class="font-sans text-[10px] uppercase tracking-wider mt-1">2026</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl text-white leading-snug">ACLT Donor Drive</h3>
+                        <p class="font-sans text-xs text-white/50 mt-1 uppercase tracking-wider">Nationwide, UK</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="font-sans text-sm text-luxury-text/70 leading-relaxed mb-4">
+                        The African Caribbean Leukaemia Trust runs bone marrow and stem cell donor recruitment drives across the UK to address the critical shortage in Black communities.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="cat-pill cat-advocacy">Advocacy</span>
+                        <a href="https://www.aclt.org" target="_blank" rel="noopener noreferrer"
+                           class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Event 5 — SickleSafe Gala -->
+            <article class="event-card rounded-sm overflow-hidden fade-up border-luxury-accent/30" style="border-color: rgba(139,0,0,0.25);">
+                <div style="background: #8B0000;" class="p-6 flex gap-4 items-start">
+                    <div class="bg-white/15 rounded-sm px-3 py-2 flex-shrink-0 text-center min-w-[56px]">
+                        <div class="font-serif text-2xl leading-none text-white">CS</div>
+                        <div class="font-sans text-[10px] uppercase tracking-wider mt-1 text-white/70">Soon</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl text-white leading-snug">A Night Without Sickle Cell</h3>
+                        <p class="font-sans text-xs text-white/60 mt-1 uppercase tracking-wider">SickleSafe Gala · London</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="font-sans text-sm text-luxury-text/70 leading-relaxed mb-4">
+                        Our flagship charity gala — an evening of glamour, celebration, and hope in honour of those living with sickle cell and the warriors who stand beside them.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="cat-pill cat-sickle-cell">SickleSafe</span>
+                        <a href="gala.html"
+                           class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">
+                            Find out more →
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <div class="accent-divider"></div>
+
+    <!-- ================================================================
+         ORGANISATIONS
+    ================================================================ -->
+    <section class="py-20 px-6 md:px-10 max-w-6xl mx-auto" id="organisations">
+
+        <!-- Header + Filters -->
+        <div class="mb-10 fade-up">
+            <span class="font-sans text-xs uppercase tracking-[0.18em] text-luxury-accent mb-3 block">Directory</span>
+            <h2 class="font-serif text-4xl md:text-5xl mb-8">Organisations</h2>
+
+            <!-- Filter buttons -->
+            <div class="flex flex-wrap gap-2" id="filter-bar" role="group" aria-label="Filter organisations by category">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="sickle-cell">Sickle Cell</button>
+                <button class="filter-btn" data-filter="advocacy">Advocacy</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+                <button class="filter-btn" data-filter="youth">Youth</button>
+                <button class="filter-btn" data-filter="nhs">NHS</button>
+                <button class="filter-btn" data-filter="community">Community</button>
+            </div>
+        </div>
+
+        <!-- Org Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="org-grid">
+
+            <!-- 1 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="sickle-cell">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-luxury-accent/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-luxury-accent text-lg font-semibold">S</span>
+                    </div>
+                    <span class="cat-pill cat-sickle-cell">Sickle Cell</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Sickle Cell Society</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    The UK's leading charity for people with sickle cell disorder. Provides advice, support, and advocacy — and funds research into better treatments.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">sicklecellsociety.org</span>
+                    <a href="https://www.sicklecellsociety.org" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="sickle-cell">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-luxury-accent/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-luxury-accent text-lg font-semibold">O</span>
+                    </div>
+                    <span class="cat-pill cat-sickle-cell">Sickle Cell</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">OSCAR Birmingham</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    Organisation for Sickle Cell Anaemia Relief — a grassroots Midlands charity offering counselling, support groups, and community outreach for SCD patients and families.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">oscarbirmingham.org.uk</span>
+                    <a href="https://www.oscarbirmingham.org.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="sickle-cell">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-luxury-accent/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-luxury-accent text-lg font-semibold">S</span>
+                    </div>
+                    <span class="cat-pill cat-sickle-cell">Sickle Cell</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Sickle Cell Care Manchester</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    A northern England charity dedicated to improving the quality of life for those with sickle cell through education, advocacy, and direct community support.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">sicklecellcaremanchester.co.uk</span>
+                    <a href="https://www.sicklecellcaremanchester.co.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 4 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="sickle-cell">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-luxury-accent/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-luxury-accent text-lg font-semibold">S</span>
+                    </div>
+                    <span class="cat-pill cat-sickle-cell">Sickle Cell</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Sickle Cell &amp; Thalassaemia Association</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    SCATA provides advocacy, information, and support for those living with haemoglobin disorders across the UK, with a focus on patient empowerment.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">sicklecell.org.uk</span>
+                    <a href="https://www.sicklecell.org.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 5 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="advocacy">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-blue-900 text-lg font-semibold">A</span>
+                    </div>
+                    <span class="cat-pill cat-advocacy">Advocacy</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">ACLT</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    The African Caribbean Leukaemia Trust works to increase the number of Black and mixed-heritage donors on the stem cell and bone marrow registers — critical for SCD patients needing transplants.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">aclt.org</span>
+                    <a href="https://www.aclt.org" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 6 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="advocacy">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-blue-900 text-lg font-semibold">S</span>
+                    </div>
+                    <span class="cat-pill cat-advocacy">Advocacy</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Sickle Cell Disease Association of America</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    SCDAA is a global reference point for advocacy, education, and support — connecting clinicians, researchers, patients, and families across the SCD community.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">sicklecelldisease.org</span>
+                    <a href="https://www.sicklecelldisease.org" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 7 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="research">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-green-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-green-800 text-lg font-semibold">G</span>
+                    </div>
+                    <span class="cat-pill cat-research">Research</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Global Blood Therapeutics</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    A biopharmaceutical company dedicated to innovative treatments for SCD, including Oxbryta — one of the first novel oral treatments approved for sickle cell in the UK.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">gbt.com</span>
+                    <a href="https://www.gbt.com" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 8 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="research">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-green-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-green-800 text-lg font-semibold">W</span>
+                    </div>
+                    <span class="cat-pill cat-research">Research</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Wellcome Sanger Institute</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    World-leading genomics research organisation conducting groundbreaking work on the genetic basis of sickle cell disease and potential gene therapy approaches.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">sanger.ac.uk</span>
+                    <a href="https://www.sanger.ac.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 9 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="nhs">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-700/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-blue-700 text-lg font-semibold">N</span>
+                    </div>
+                    <span class="cat-pill cat-nhs">NHS</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">NHS Blood &amp; Transplant</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    NHSBT manages the national blood supply and donor registers. For SCD patients, matched blood from Black donors is critical — NHSBT actively campaigns to diversify donation.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">nhsbt.nhs.uk</span>
+                    <a href="https://www.nhsbt.nhs.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 10 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="nhs">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-700/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-blue-700 text-lg font-semibold">N</span>
+                    </div>
+                    <span class="cat-pill cat-nhs">NHS</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">NHS Specialist Haematology</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    The NHS runs specialist haematology and SCD clinics across the UK. NHS England's SCD framework supports patients throughout their care journey from newborn screening to adult services.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">nhs.uk</span>
+                    <a href="https://www.nhs.uk/conditions/sickle-cell-disease" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 11 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="youth">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-yellow-800/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-yellow-800 text-lg font-semibold">A</span>
+                    </div>
+                    <span class="cat-pill cat-youth">Youth</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">AYPH</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    The Association for Young People's Health champions the health of young people aged 10–24. Supports transition from paediatric to adult SCD care — a critical and often under-served gap.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">ayph.org.uk</span>
+                    <a href="https://www.ayph.org.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 12 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="youth">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-yellow-800/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-yellow-800 text-lg font-semibold">Y</span>
+                    </div>
+                    <span class="cat-pill cat-youth">Youth</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">YoungMinds</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    The UK's leading charity fighting for children and young people's mental health. Young people with SCD face significant mental health challenges — YoungMinds provides vital support.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">youngminds.org.uk</span>
+                    <a href="https://www.youngminds.org.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 13 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="community">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-purple-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-purple-900 text-lg font-semibold">U</span>
+                    </div>
+                    <span class="cat-pill cat-community">Community</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">UK Youth</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    A national charity and membership organisation that supports youth workers and young people's services — helping those with long-term conditions like SCD access community-based programmes.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">ukyouth.org</span>
+                    <a href="https://www.ukyouth.org" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 14 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="community">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-purple-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-purple-900 text-lg font-semibold">T</span>
+                    </div>
+                    <span class="cat-pill cat-community">Community</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">The Mix</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    Essential support for under 25s — offering free, confidential support on everything from mental health to chronic illness. A safe space for young people navigating life with SCD.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">themix.org.uk</span>
+                    <a href="https://www.themix.org.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+            <!-- 15 -->
+            <article class="org-card rounded-sm p-6 fade-up" data-category="research">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-10 h-10 rounded-full bg-green-900/10 flex items-center justify-center flex-shrink-0">
+                        <span class="font-serif text-green-800 text-lg font-semibold">N</span>
+                    </div>
+                    <span class="cat-pill cat-research">Research</span>
+                </div>
+                <h3 class="font-serif text-xl mb-2">Novartis UK</h3>
+                <p class="font-sans text-sm text-luxury-text/65 leading-relaxed mb-5">
+                    A leading pharmaceutical company advancing SCD treatments including Cosentyx and crizanlizumab. Novartis actively funds patient programmes and disease awareness in the UK.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-luxury-concrete">
+                    <span class="font-sans text-xs text-luxury-text/40">novartis.co.uk</span>
+                    <a href="https://www.novartis.co.uk" target="_blank" rel="noopener noreferrer"
+                       class="font-sans text-xs uppercase tracking-wider text-luxury-accent hover:underline">Visit →</a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Empty state (hidden by default) -->
+        <div id="empty-state" class="hidden py-20 text-center">
+            <p class="font-serif text-2xl text-luxury-text/40">No organisations found in this category.</p>
+        </div>
+    </section>
+
+    <div class="accent-divider"></div>
+
+    <!-- ================================================================
+         STAY CONNECTED CTA
+    ================================================================ -->
+    <section class="py-24 px-6 md:px-10 max-w-3xl mx-auto text-center">
+        <div class="fade-up">
+            <span class="font-sans text-xs uppercase tracking-[0.18em] text-luxury-accent mb-4 block">Stay Connected</span>
+            <h2 class="font-serif text-4xl md:text-5xl mb-6">
+                Know what's happening<br>in the community.
+            </h2>
+            <p class="font-sans text-base text-luxury-text/60 max-w-md mx-auto mb-10 leading-relaxed">
+                Join the SickleSafe mailing list to receive updates on events, new organisations, and resources across the sickle cell community.
+            </p>
+            <a href="index.html#contact"
+               class="inline-block bg-luxury-accent text-white font-sans text-xs uppercase tracking-[0.15em] px-10 py-4 hover:bg-opacity-90 transition-all">
+                Join the List
+            </a>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         FOOTER
+    ================================================================ -->
+    <footer class="bg-luxury-dark py-12 px-6 md:px-10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="index.html">
+                <img src="assets/logo-light.png" alt="SickleSafe" class="h-4 w-auto opacity-80">
+            </a>
+            <div class="flex gap-8">
+                <a href="index.html"     class="font-sans text-xs text-white/40 hover:text-white/80 uppercase tracking-wider transition-colors">Home</a>
+                <a href="problem.html"   class="font-sans text-xs text-white/40 hover:text-white/80 uppercase tracking-wider transition-colors">The Problem</a>
+                <a href="community.html" class="font-sans text-xs text-white/80 uppercase tracking-wider">Community</a>
+                <a href="gala.html"      class="font-sans text-xs text-white/40 hover:text-white/80 uppercase tracking-wider transition-colors">Gala</a>
+            </div>
+            <p class="font-sans text-xs text-white/25">© 2026 SickleSafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Menu ──────────────────────────────────────────────────────────────
+        const menuBtn   = document.getElementById('menu-btn');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        menuBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+            menuOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+        menuClose.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+        menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+        function closeMenu() {
+            menuOverlay.classList.remove('active');
+            menuOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        // ── Navbar logo swap on scroll ────────────────────────────────────────
+        const navLogo = document.getElementById('nav-logo');
+        window.addEventListener('scroll', () => {
+            navLogo.src = window.scrollY > 60 ? 'assets/logo.png' : 'assets/logo.png';
+        }, { passive: true });
+
+        // ── Category Filter ───────────────────────────────────────────────────
+        const filterBar = document.getElementById('filter-bar');
+        const orgCards  = document.querySelectorAll('#org-grid article');
+        const emptyState = document.getElementById('empty-state');
+
+        filterBar.addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+
+            filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            let visible = 0;
+
+            orgCards.forEach(card => {
+                const match = filter === 'all' || card.dataset.category === filter;
+                card.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+
+            emptyState.classList.toggle('hidden', visible > 0);
+        });
+
+        // ── GSAP Scroll Animations ────────────────────────────────────────────
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
