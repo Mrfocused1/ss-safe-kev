@@ -269,11 +269,19 @@
             <div class="container mx-auto px-8 relative z-10">
 
                 <!-- Header -->
-                <div class="text-center mb-32 relative">
+                <div class="text-center mb-16 relative">
                     <div class="inline-block bg-luxury-base px-6 relative z-10">
                         <span class="text-luxury-accent text-xs tracking-[0.3em] uppercase font-bold block mb-4">Emergency Protocol</span>
                         <h2 class="font-serif text-5xl md:text-7xl text-luxury-text">One Tap.<br>Everyone Knows.</h2>
                     </div>
+                </div>
+
+                <!-- Emergency safety notice -->
+                <div class="max-w-xl mx-auto mb-20 text-center">
+                    <p class="font-serif text-xl md:text-2xl text-luxury-accent font-semibold">
+                        In a medical emergency, always call 112 immediately.
+                    </p>
+                    <p class="font-sans text-sm text-gray-500 mt-2">SickleSafe supports your care — it does not replace emergency services.</p>
                 </div>
 
                 <!-- Timeline Steps -->
@@ -307,12 +315,12 @@
                     <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
                         <div class="hidden md:block md:w-[45%] text-right pr-12">
                             <h3 class="font-serif text-3xl text-luxury-text mb-2">Circle Notified</h3>
-                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to all helpers and emergency contacts.</p>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to everyone in your Circle of Care.</p>
                         </div>
                         <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
                         <div class="md:hidden pl-8 w-full">
                             <h3 class="font-serif text-2xl text-luxury-text mb-2">Circle Notified</h3>
-                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to all helpers and emergency contacts.</p>
+                            <p class="font-sans text-gray-500 text-sm leading-relaxed">Instant push alerts to everyone in your Circle of Care.</p>
                         </div>
                         <div class="hidden md:block md:w-[45%]"></div>
                     </div>
@@ -348,7 +356,7 @@
                                 </div>
                                 <div class="flex justify-between items-center border-b border-gray-200 pb-2">
                                     <span class="text-sm text-gray-500 uppercase tracking-widest">Tracking</span>
-                                    <span class="font-serif text-lg">Helper ETA</span>
+                                    <span class="font-serif text-lg">Responder ETA</span>
                                 </div>
                                 <div class="flex justify-between items-center border-b border-gray-200 pb-2">
                                     <span class="text-sm text-gray-500 uppercase tracking-widest">Log</span>
@@ -357,13 +365,13 @@
                             </div>
                         </div>
 
-                        <!-- Right Column: Helpers See -->
+                        <!-- Right Column: Your Circle Sees -->
                         <div class="relative pl-8 md:pl-0">
                             <!-- Dot on timeline (mobile only) -->
                             <div class="crisis-dot absolute left-[-0.5rem] top-1 transform -translate-x-1/2 md:hidden w-3 h-3 rounded-full border-2 border-gray-300 bg-luxury-base z-10 transition-colors duration-300"></div>
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="hidden md:block w-2 h-2 bg-gray-300 rounded-full"></div>
-                                <h4 class="font-serif text-2xl text-luxury-text">Helpers See</h4>
+                                <h4 class="font-serif text-2xl text-luxury-text">Your Circle Sees</h4>
                             </div>
                             <div class="space-y-6">
                                 <div class="flex justify-between items-center border-b border-gray-200 pb-2">
@@ -534,8 +542,8 @@
                                     </g>
                                 </svg>
                             </div>
-                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Download & Choose Your Role</h3>
-                            <p class="text-gray-600 text-lg leading-relaxed">Get the app on iOS or Android. Select your role — Overcomer (patient), Helper (caregiver), or Volunteer — each with a tailored experience.</p>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-4">Download & Get Started</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">Get the app on iOS or Android and create your free account. Built for people living with sickle cell disease — set up takes under two minutes.</p>
                             <div class="flex gap-4 mt-6">
                                 <span class="px-4 py-2 bg-luxury-dark text-white text-xs uppercase tracking-wider rounded">iOS</span>
                                 <span class="px-4 py-2 bg-luxury-dark text-white text-xs uppercase tracking-wider rounded">Android</span>
@@ -668,11 +676,11 @@
                                 </svg>
                             </div>
                             <h3 class="font-serif text-3xl text-luxury-text mb-4">Build Your Circle of Care</h3>
-                            <p class="text-gray-600 text-lg leading-relaxed">Invite family, friends, and caregivers to your circle. Assign roles and permissions so the right people get the right alerts.</p>
+                            <p class="text-gray-600 text-lg leading-relaxed">Invite the trusted people in your life to your Circle of Care. They'll receive alerts and location updates if you ever activate SOS.</p>
                             <div class="flex gap-2 mt-6 flex-wrap">
                                 <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Family</span>
-                                <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Caregivers</span>
                                 <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Friends</span>
+                                <span class="px-3 py-1 border border-gray-300 text-xs text-gray-500">Clinicians</span>
                             </div>
                         </div>
                     </div>
@@ -1013,19 +1021,6 @@
                                aria-required="true"
                                class="w-full outline-none text-sm tracking-widest uppercase py-2 bg-transparent">
                         <span class="error-message" role="alert"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role" class="sr-only">Select your role</label>
-                        <select id="role"
-                                name="role"
-                                required
-                                aria-required="true"
-                                class="w-full outline-none font-sans text-gray-400 text-sm tracking-widest uppercase py-2 bg-transparent cursor-pointer">
-                            <option value="warrior" class="font-sans">I am a Warrior</option>
-                            <option value="caregiver" class="font-sans">I am a Care Giver</option>
-                            <option value="sponsor" class="font-sans">I am a Sponsor</option>
-                        </select>
                     </div>
 
                     <div class="pt-8 text-center">

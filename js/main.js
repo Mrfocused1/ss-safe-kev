@@ -134,8 +134,7 @@ const ContactForm = {
 
         this.fields = {
             name: this.form.querySelector('#name'),
-            email: this.form.querySelector('#email'),
-            role: this.form.querySelector('#role')
+            email: this.form.querySelector('#email')
         };
         this.submitBtn = this.form.querySelector('.submit-btn');
         this.successMessage = document.getElementById('form-success');
@@ -224,7 +223,6 @@ const ContactForm = {
                     formType: 'contact_form',
                     email: this.fields.email.value,
                     name: this.fields.name.value,
-                    role: this.fields.role.value,
                     sessionId: window.Analytics?.sessionId
                 })
             });
