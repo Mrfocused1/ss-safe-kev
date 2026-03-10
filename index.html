@@ -77,7 +77,9 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 pointer-events-none" aria-label="Site navigation">
         <a href="#hero" class="pointer-events-auto" aria-label="Sickle Safe - Home">
-            <img src="assets/logo.png" alt="Sickle Safe" class="h-4 md:h-5 w-auto">
+            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+            <span class="font-serif font-semibold text-luxury-text text-lg" style="display:none">SickleSafe</span>
         </a>
         <!-- Menu Button -->
         <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto text-luxury-text hover:text-luxury-accent transition-colors" aria-label="Open menu">
@@ -203,135 +205,55 @@
         </section>
 
 
-        <!-- SECTION 3: SERVICES - VERTICAL TO HORIZONTAL -->
-        <section id="services-wrapper" class="w-full h-screen bg-luxury-base text-luxury-text overflow-hidden relative" aria-label="Our services">
-            <div id="services-container" class="flex h-full w-[300vw]">
+        <!-- SECTION 3: THE OVERCOMER -->
+        <section id="services-wrapper" class="w-full bg-luxury-base text-luxury-text relative" aria-label="About SickleSafe">
+            <div class="flex flex-col md:flex-row min-h-screen">
 
-                <!-- Panel 1: Warrior (Overcomer) -->
-                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300">
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group img-loading">
-                        <div class="img-spinner" aria-hidden="true"></div>
-                        <img src="assets/images/warrior.jpg"
-                             alt="Sickle Cell patient - The Warrior"
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                             loading="lazy">
-                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full">
-                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Overcomer</h3>
-                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Patients</p>
-                        </div>
+                <!-- Left: Visual panel (styled background replacing missing image) -->
+                <div class="w-full md:w-1/2 min-h-[55vw] md:min-h-screen relative overflow-hidden bg-luxury-dark flex items-end">
+                    <div class="absolute inset-0" style="background: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 60%, #3a0a0a 100%)"></div>
+                    <!-- Subtle decorative accent -->
+                    <div class="absolute top-1/3 left-1/4 w-64 h-64 rounded-full opacity-10" style="background: radial-gradient(circle, #8B0000, transparent)"></div>
+                    <div class="relative z-10 p-8 md:p-12 w-full">
+                        <span class="text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold mb-4 block">The App</span>
+                        <h3 class="font-serif text-4xl md:text-6xl italic text-white leading-tight">The Overcomer</h3>
+                        <p class="text-xs uppercase tracking-widest mt-3 text-gray-400">Built for Sickle Cell Warriors</p>
                     </div>
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 bg-stone-100">
-                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
-                            Take control of your health with <span class="text-luxury-accent font-semibold">one-tap crisis alerts</span> that instantly notify your entire care team.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                One-tap emergency alert with location sharing
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Offline Medical ID with QR code for hospitals
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Daily pain, hydration, and medication tracking
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Mood and trigger logging for pattern detection
-                            </li>
-                        </ul>
-                        <button class="service-more-btn inline-block mt-6 text-xs uppercase tracking-widest text-luxury-text hover:text-luxury-accent transition-colors border-b border-luxury-text hover:border-luxury-accent pb-1" data-index="0">More</button>
-                    </div>
-                </article>
-
-                <!-- Panel 2: Helper (Care Giver) -->
-                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300 bg-white">
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 order-2 md:order-1">
-                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
-                            Know the moment something's wrong. Get <span class="text-luxury-accent font-semibold">real-time alerts</span> with live location tracking when your loved one triggers crisis mode.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Instant push notifications during crises
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Real-time location and ETA tracking
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                View health metrics and medication adherence
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Coordinate with other circle members
-                            </li>
-                        </ul>
-                        <button class="service-more-btn inline-block mt-6 text-xs uppercase tracking-widest text-luxury-text hover:text-luxury-accent transition-colors border-b border-luxury-text hover:border-luxury-accent pb-1" data-index="1">More</button>
-                    </div>
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group order-1 md:order-2 img-loading">
-                        <div class="img-spinner" aria-hidden="true"></div>
-                        <img src="assets/images/caregiver.jpg"
-                             alt="Caregiver supporting a patient"
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                             loading="lazy">
-                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full z-10">
-                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Helper</h3>
-                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Family & Caregivers</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Panel 3: Volunteer -->
-                <article class="w-screen h-full flex flex-col md:flex-row items-center relative border-r border-gray-300">
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group img-loading">
-                        <div class="img-spinner" aria-hidden="true"></div>
-                        <img src="assets/images/volunteer.jpg"
-                             alt="Community volunteer"
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                             loading="lazy">
-                        <div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full z-10">
-                            <h3 class="font-serif text-4xl md:text-6xl italic text-white">The Volunteer</h3>
-                            <p class="text-xs uppercase tracking-widest mt-2 text-gray-300">For Community Supporters</p>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col items-start justify-center p-8 md:p-12 bg-stone-100">
-                        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-6">
-                            Make a meaningful impact. <span class="text-luxury-accent font-semibold">Track your contribution</span> and connect with those who need support most.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Track volunteer hours and impact metrics
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Join community events and awareness campaigns
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Complete missions and earn recognition
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></span>
-                                Connect with patients through peer support
-                            </li>
-                        </ul>
-                        <button class="service-more-btn inline-block mt-6 text-xs uppercase tracking-widest text-luxury-text hover:text-luxury-accent transition-colors border-b border-luxury-text hover:border-luxury-accent pb-1" data-index="2">More</button>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 right-8 z-50 cursor-pointer group" aria-hidden="true">
-                <div class="flex items-center gap-4 transition-colors duration-300">
-                    <span class="uppercase text-[10px] tracking-widest text-luxury-text group-hover:text-luxury-accent">Explore Services</span>
-                    <div class="w-12 h-[1px] bg-luxury-text group-hover:bg-luxury-accent transition-colors duration-300"></div>
                 </div>
+
+                <!-- Right: Feature content -->
+                <div class="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-16 bg-stone-100">
+                    <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 mb-8">
+                        Your health, your way. SickleSafe gives you <span class="text-luxury-accent font-semibold">everything you need to manage sickle cell</span> — from tracking daily wellness to activating emergency SOS in a single tap.
+                    </p>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Pain crisis tracking — log severity, duration, and triggers to spot patterns early</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Hydration logging with daily targets and customisable reminders</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Medication reminders and adherence history in one place</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Emergency SOS — one tap alerts your entire Circle of Care with your location</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Your personal Circle of Care — family, friends, and clinicians in one secure network</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 bg-luxury-accent rounded-full mt-1.5 shrink-0"></span>
+                            <span>Offline Medical ID with QR code — readable by hospital staff without internet</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
@@ -1135,7 +1057,9 @@
     <footer id="footer" class="py-12 bg-black text-white border-t border-gray-900 relative z-20">
         <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start">
             <div class="mb-6 md:mb-0">
-                <img src="assets/logo-light.png" alt="Sickle Safe" class="h-5 w-auto">
+                <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+                <span class="font-serif font-semibold text-white text-lg" style="display:none">SickleSafe</span>
             </div>
 
             <nav class="flex flex-wrap gap-8 md:gap-12 text-xs uppercase tracking-widest text-gray-500" aria-label="Footer navigation">
@@ -1149,40 +1073,6 @@
         </div>
     </footer>
 
-    <!-- Modal Overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black/60 z-[60] opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm"></div>
-
-    <!-- Bottom Sheet Modal -->
-    <div id="service-modal" class="fixed bottom-0 left-0 w-full max-h-[85vh] md:h-[55vh] bg-luxury-base z-[70] transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden">
-
-        <!-- Close Button -->
-        <div class="absolute top-6 right-6 md:top-8 md:right-8 z-20 cursor-pointer group" id="modal-close">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-luxury-text/20 flex items-center justify-center group-hover:bg-luxury-text group-hover:text-white transition-colors">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
-                    <path d="M1 1L11 11M1 11L11 1" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- Content Container -->
-        <div class="flex flex-col md:flex-row md:h-full">
-            <!-- Left: Image/Graphic Context -->
-            <div class="hidden md:block w-1/3 bg-stone-200 relative overflow-hidden">
-                <img id="modal-img" src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-            </div>
-
-            <!-- Right: Text Content -->
-            <div class="p-8 pt-16 pb-12 md:p-16 md:flex-1 flex flex-col justify-center relative overflow-y-auto">
-                <span id="modal-subtitle" class="text-luxury-accent text-xs tracking-[0.2em] uppercase font-bold mb-4 block">Subtitle</span>
-                <h3 id="modal-title" class="font-serif text-3xl md:text-5xl text-luxury-text mb-6 leading-tight">Title</h3>
-                <p id="modal-desc" class="font-sans text-gray-600 text-sm md:text-base leading-relaxed max-w-xl">Description</p>
-
-                <div class="mt-8 md:mt-12">
-                    <a href="#contact" class="border-b border-luxury-text pb-1 text-xs uppercase tracking-widest hover:text-luxury-accent hover:border-luxury-accent transition-colors" id="modal-cta">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- GSAP Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

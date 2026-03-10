@@ -83,7 +83,9 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 pointer-events-none bg-luxury-base/90 backdrop-blur-sm border-b border-gray-200" aria-label="Site navigation">
         <a href="index.html" class="pointer-events-auto" aria-label="SickleSafe - Home">
-            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto">
+            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+            <span class="font-serif font-semibold text-luxury-text text-lg" style="display:none">SickleSafe</span>
         </a>
         <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto text-luxury-text hover:text-luxury-accent transition-colors" aria-label="Open menu">
             Menu
@@ -177,7 +179,9 @@
     <footer id="footer" class="py-12 bg-black text-white border-t border-gray-900 relative z-20">
         <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start">
             <div class="mb-6 md:mb-0">
-                <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto">
+                <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+                <span class="font-serif font-semibold text-white text-lg" style="display:none">SickleSafe</span>
             </div>
             <nav class="flex flex-wrap gap-8 md:gap-12 text-xs uppercase tracking-widest text-gray-500" aria-label="Footer navigation">
                 <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
