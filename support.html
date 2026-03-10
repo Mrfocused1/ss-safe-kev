@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | SickleSafe</title>
+
+    <meta name="description" content="Get help with SickleSafe — contact our support team, submit enquiries, or request account deletion.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            base: '#F5F5F0',
+                            dark: '#1A1A1A',
+                            accent: '#8B0000',
+                            text: '#2C2C2C',
+                            concrete: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-sans antialiased bg-luxury-base">
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 pointer-events-none bg-luxury-base/90 backdrop-blur-sm border-b border-gray-200" aria-label="Site navigation">
+        <a href="index.html" class="pointer-events-auto" aria-label="SickleSafe - Home">
+            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto">
+        </a>
+        <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto text-luxury-text hover:text-luxury-accent transition-colors" aria-label="Open menu">
+            Menu
+        </button>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+        <button id="menu-close" class="menu-close" aria-label="Close menu">Close</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="problem.html">The Problem</a>
+            <a href="gala.html">Gala Event</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="pt-32 pb-24">
+
+        <!-- Page Header -->
+        <div class="container mx-auto px-8 max-w-4xl mb-20">
+            <span class="text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold">Get in touch</span>
+            <h1 class="font-serif text-4xl md:text-6xl text-luxury-text tracking-tight leading-tight mt-4 mb-6">
+                We're here to help.
+            </h1>
+            <p class="font-sans text-gray-500 text-lg max-w-xl leading-relaxed">
+                Whether you have a question about the app, need technical support, or want to make a data request — reach out and we'll get back to you.
+            </p>
+        </div>
+
+        <!-- Contact Cards -->
+        <div class="container mx-auto px-8 max-w-4xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- General Enquiries -->
+                <div class="bg-white border border-luxury-concrete p-8 rounded-sm">
+                    <div class="w-10 h-10 bg-luxury-base border border-luxury-concrete rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-4 h-4 text-luxury-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="font-serif text-2xl text-luxury-text mb-2">General Enquiries</h2>
+                    <p class="font-sans text-sm text-gray-500 leading-relaxed mb-5">For partnerships, press, or anything else — we'd love to hear from you.</p>
+                    <a href="mailto:hello@sicklesafe.co.uk" class="inline-block font-sans text-sm font-medium text-luxury-accent hover:underline tracking-wide">
+                        hello@sicklesafe.co.uk
+                    </a>
+                </div>
+
+                <!-- Technical Support -->
+                <div class="bg-white border border-luxury-concrete p-8 rounded-sm">
+                    <div class="w-10 h-10 bg-luxury-base border border-luxury-concrete rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-4 h-4 text-luxury-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h2 class="font-serif text-2xl text-luxury-text mb-2">Technical Support</h2>
+                    <p class="font-sans text-sm text-gray-500 leading-relaxed mb-5">Having trouble with the app? Our support team is ready to help you.</p>
+                    <a href="mailto:support@sicklesafe.co.uk" class="inline-block font-sans text-sm font-medium text-luxury-accent hover:underline tracking-wide">
+                        support@sicklesafe.co.uk
+                    </a>
+                </div>
+
+                <!-- Privacy & Data Requests -->
+                <div class="bg-white border border-luxury-concrete p-8 rounded-sm">
+                    <div class="w-10 h-10 bg-luxury-base border border-luxury-concrete rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-4 h-4 text-luxury-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h2 class="font-serif text-2xl text-luxury-text mb-2">Privacy &amp; Data Requests</h2>
+                    <p class="font-sans text-sm text-gray-500 leading-relaxed mb-5">Questions about your data, or want to exercise your privacy rights? Contact us directly.</p>
+                    <a href="mailto:privacy@sicklesafe.co.uk" class="inline-block font-sans text-sm font-medium text-luxury-accent hover:underline tracking-wide">
+                        privacy@sicklesafe.co.uk
+                    </a>
+                </div>
+
+                <!-- Account Deletion -->
+                <div class="bg-white border border-luxury-concrete p-8 rounded-sm">
+                    <div class="w-10 h-10 bg-luxury-base border border-luxury-concrete rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-4 h-4 text-luxury-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </div>
+                    <h2 class="font-serif text-2xl text-luxury-text mb-2">Account Deletion</h2>
+                    <p class="font-sans text-sm text-gray-500 leading-relaxed mb-5">To request deletion of your account and associated data, email us with the subject line below.</p>
+                    <a href="mailto:support@sicklesafe.co.uk?subject=Account%20Deletion%20Request" class="inline-block font-sans text-sm font-medium text-luxury-accent hover:underline tracking-wide">
+                        support@sicklesafe.co.uk
+                    </a>
+                    <p class="font-sans text-xs text-gray-400 mt-2">Subject: <em>Account Deletion Request</em></p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="container mx-auto px-8 max-w-4xl mt-20 mb-16">
+            <hr class="border-luxury-concrete">
+        </div>
+
+        <!-- Legal Links -->
+        <div class="container mx-auto px-8 max-w-4xl">
+            <h2 class="font-serif text-2xl text-luxury-text mb-8">Legal</h2>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="privacy.html" class="group flex items-center gap-4 bg-white border border-luxury-concrete px-6 py-5 rounded-sm hover:border-luxury-text transition-colors">
+                    <span class="font-sans text-sm text-luxury-text group-hover:text-luxury-accent transition-colors">Privacy Policy</span>
+                    <svg class="w-4 h-4 text-gray-300 group-hover:text-luxury-accent transition-colors ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="terms.html" class="group flex items-center gap-4 bg-white border border-luxury-concrete px-6 py-5 rounded-sm hover:border-luxury-text transition-colors">
+                    <span class="font-sans text-sm text-luxury-text group-hover:text-luxury-accent transition-colors">Terms of Service</span>
+                    <svg class="w-4 h-4 text-gray-300 group-hover:text-luxury-accent transition-colors ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 bg-black text-white border-t border-gray-900 relative z-20">
+        <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start">
+            <div class="mb-6 md:mb-0">
+                <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto">
+            </div>
+            <nav class="flex flex-wrap gap-8 md:gap-12 text-xs uppercase tracking-widest text-gray-500" aria-label="Footer navigation">
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="support.html" class="hover:text-white transition-colors">Support</a>
+            </nav>
+        </div>
+        <div class="container mx-auto px-8 mt-12 text-center">
+            <p class="text-[10px] text-white uppercase tracking-widest">&copy; <span id="current-year">2026</span> SickleSafe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/analytics.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

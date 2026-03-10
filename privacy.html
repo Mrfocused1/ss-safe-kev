@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | SickleSafe</title>
+
+    <meta name="description" content="SickleSafe Privacy Policy — how we handle your data, what we collect, and your rights.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            base: '#F5F5F0',
+                            dark: '#1A1A1A',
+                            accent: '#8B0000',
+                            text: '#2C2C2C',
+                            concrete: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .legal-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #2C2C2C;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .legal-section p,
+        .legal-section li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #4B4B4B;
+            line-height: 1.85;
+        }
+        .legal-section ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-section li {
+            margin-bottom: 0.35rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-luxury-base">
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-50 pointer-events-none bg-luxury-base/90 backdrop-blur-sm border-b border-gray-200" aria-label="Site navigation">
+        <a href="index.html" class="pointer-events-auto" aria-label="SickleSafe - Home">
+            <img src="assets/logo.png" alt="SickleSafe" class="h-4 md:h-5 w-auto">
+        </a>
+        <button id="menu-btn" class="uppercase tracking-[0.2em] text-xs font-medium pointer-events-auto text-luxury-text hover:text-luxury-accent transition-colors" aria-label="Open menu">
+            Menu
+        </button>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+        <button id="menu-close" class="menu-close" aria-label="Close menu">Close</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="problem.html">The Problem</a>
+            <a href="gala.html">Gala Event</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="pt-32 pb-24">
+        <div class="container mx-auto px-8 max-w-3xl">
+
+            <!-- Page Header -->
+            <header class="mb-12">
+                <span class="text-luxury-accent text-xs uppercase tracking-[0.3em] font-semibold">Legal</span>
+                <h1 class="font-serif text-4xl md:text-6xl text-luxury-text tracking-tight leading-tight mt-4 mb-4">
+                    Privacy Policy
+                </h1>
+                <p class="text-gray-400 text-sm font-sans">Last updated: March 2026</p>
+            </header>
+
+            <!-- Policy Sections -->
+            <div class="legal-section">
+
+                <h2>Overview</h2>
+                <p>SickleSafe is a health management application designed for people living with sickle cell disease. We built SickleSafe with your privacy as a first principle.</p>
+                <p class="mt-3">All personal data you enter into SickleSafe is stored locally on your device using AsyncStorage. We do not operate servers that store your personal health information, and we do not transmit your data to any remote server operated by SickleSafe. Your health data belongs to you and stays on your device.</p>
+
+                <h2>Data We Collect</h2>
+                <p>The following information may be stored locally on your device when you use SickleSafe:</p>
+                <ul>
+                    <li>Your name and date of birth (used to personalise your Medical ID)</li>
+                    <li>Health logs — including pain levels, hydration records, and medication tracking</li>
+                    <li>Notification preferences</li>
+                    <li>Community posts and messages you choose to share within the app</li>
+                </ul>
+                <p class="mt-3">All of the above is stored exclusively via AsyncStorage on your device. It is not uploaded to or accessible from any SickleSafe server.</p>
+
+                <h2>Data We Do Not Collect</h2>
+                <p>SickleSafe does not collect or store the following:</p>
+                <ul>
+                    <li><strong>Location data</strong> — the app does not access or record your location</li>
+                    <li><strong>Contacts</strong> — the app does not access your contacts list</li>
+                    <li><strong>Calendar data</strong> — the app does not read from or write to your calendar</li>
+                    <li><strong>Biometric data</strong> — Face ID or Touch ID may be used to unlock your Medical ID in-session as an authentication mechanism only. The result of biometric authentication is never stored or transmitted</li>
+                </ul>
+
+                <h2>Third-Party Services</h2>
+                <p>SickleSafe makes read-only requests to the following public APIs to provide educational content within the app:</p>
+                <ul>
+                    <li><strong>ClinicalTrials.gov API</strong> — to display publicly available clinical trial information relevant to sickle cell disease</li>
+                    <li><strong>OpenFDA API</strong> — to display publicly available medication information</li>
+                </ul>
+                <p class="mt-3">No personal data is sent to either of these services. All requests are read-only and fetch publicly available information only.</p>
+
+                <h2>Camera &amp; Microphone</h2>
+                <p>SickleSafe may request access to your camera and microphone for the following limited purposes:</p>
+                <ul>
+                    <li>Attaching photos to community messages or posts</li>
+                    <li>Scanning medication barcodes for quick medication entry</li>
+                </ul>
+                <p class="mt-3">Media captured within the app is stored locally on your device only and is not uploaded to any server.</p>
+
+                <h2>Children</h2>
+                <p>SickleSafe is not intended for use by children under the age of 13. We do not knowingly collect information from children under 13. If you are a parent or guardian and believe your child has used SickleSafe, please contact us at <a href="mailto:privacy@sicklesafe.co.uk" class="text-luxury-accent hover:underline">privacy@sicklesafe.co.uk</a>.</p>
+
+                <h2>Your Rights</h2>
+                <p>Because your data is stored locally on your device, you can delete it at any time by uninstalling the app or clearing app data from your device settings.</p>
+                <p class="mt-3">If you would like to request deletion of your account and any associated data held by SickleSafe (for example, any community content), please email <a href="mailto:privacy@sicklesafe.co.uk" class="text-luxury-accent hover:underline">privacy@sicklesafe.co.uk</a> with the subject line "Account Deletion Request". We will action your request within 30 days.</p>
+
+                <h2>Contact</h2>
+                <p>For any privacy-related questions or data requests, please contact:</p>
+                <p class="mt-2"><a href="mailto:privacy@sicklesafe.co.uk" class="text-luxury-accent hover:underline font-medium">privacy@sicklesafe.co.uk</a></p>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 bg-black text-white border-t border-gray-900 relative z-20">
+        <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start">
+            <div class="mb-6 md:mb-0">
+                <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto">
+            </div>
+            <nav class="flex flex-wrap gap-8 md:gap-12 text-xs uppercase tracking-widest text-gray-500" aria-label="Footer navigation">
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="support.html" class="hover:text-white transition-colors">Support</a>
+            </nav>
+        </div>
+        <div class="container mx-auto px-8 mt-12 text-center">
+            <p class="text-[10px] text-white uppercase tracking-widest">&copy; <span id="current-year">2026</span> SickleSafe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/analytics.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
