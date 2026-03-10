@@ -144,8 +144,8 @@
     <nav class="fixed w-full z-50 transition-all duration-300 bg-transparent border-b border-white/10" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <a href="index.html">
-                    <img src="assets/logo-light.png" alt="SickleSafe" class="h-4 md:h-5 w-auto"
+                <a href="/">
+                    <img src="/assets/logo-light.png" alt="SickleSafe" class="h-4 md:h-5 w-auto"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
                     <span class="font-serif font-semibold text-white text-lg" style="display:none">SickleSafe</span>
                 </a>
@@ -165,9 +165,9 @@
                 <button id="mobile-menu-close" class="text-white text-sm uppercase tracking-widest hover:text-luxury-accent transition-colors">Close</button>
             </div>
             <nav class="flex flex-col items-center justify-center flex-1 gap-8 text-center">
-                <a href="index.html" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Home</a>
-                <a href="problem.html" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">The Problem</a>
-                <a href="community.html" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Community</a>
+                <a href="/" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Home</a>
+                <a href="/problem" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">The Problem</a>
+                <a href="/community" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Community</a>
                 <a href="#about" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">About</a>
                 <a href="#highlights" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Highlights</a>
                 <a href="#partners" class="text-white text-3xl font-serif hover:text-luxury-accent transition-colors">Partner With Us</a>
@@ -180,7 +180,7 @@
 
         <!-- Background Video -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-            <source src="assets/images/gala-hero.mp4" type="video/mp4">
+            <source src="/assets/images/gala-hero.mp4" type="video/mp4">
         </video>
 
         <!-- Permanent dark overlay for text legibility -->
@@ -233,7 +233,7 @@
             </div>
             <div class="relative h-[500px] border border-luxury-concrete p-4 gsap-scale-up">
                 <div class="w-full h-full relative overflow-hidden">
-                    <img src="assets/images/gala-tuxedo.jpg"
+                    <img src="/assets/images/gala-tuxedo.jpg"
                          alt="Gala attendees in formal wear"
                          class="w-full h-full object-cover object-center">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -317,7 +317,7 @@
                         <div class="w-[320px] h-[640px] bg-luxury-dark rounded-[3rem] p-3 shadow-2xl">
                             <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
                                 <!-- App Screenshot -->
-                                <img src="assets/images/app-dashboard.png"
+                                <img src="/assets/images/app-dashboard.png"
                                      alt="SickleSafe App Dashboard"
                                      class="w-full h-full object-cover object-top">
                             </div>
@@ -360,7 +360,7 @@
     <section id="mailing-list" class="py-24 relative overflow-hidden">
         <!-- Background image -->
         <div class="absolute inset-0">
-            <img src="assets/images/gala-couple.jpg" alt="" class="w-full h-full object-cover object-center">
+            <img src="/assets/images/gala-couple.jpg" alt="" class="w-full h-full object-cover object-center">
             <div class="absolute inset-0 bg-black/65"></div>
         </div>
 
@@ -408,7 +408,7 @@
 
                 <!-- Brand -->
                 <div class="max-w-xs">
-                    <img src="assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto mb-4 mx-auto md:mx-0"
+                    <img src="/assets/logo-light.png" alt="SickleSafe" class="h-5 w-auto mb-4 mx-auto md:mx-0"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
                     <span class="font-serif font-semibold text-white text-lg" style="display:none">SickleSafe</span>
                     <p class="font-serif text-gray-500 text-sm">
@@ -419,9 +419,9 @@
                 <!-- Links -->
                 <div class="flex flex-wrap gap-8 font-sans text-xs uppercase tracking-widest text-gray-400">
                     <a href="#" class="hover:text-luxury-accent transition-colors">Instagram</a>
-                    <a href="terms.html" class="hover:text-luxury-accent transition-colors">Terms</a>
-                    <a href="privacy.html" class="hover:text-luxury-accent transition-colors">Privacy</a>
-                    <a href="support.html" class="hover:text-luxury-accent transition-colors">Support</a>
+                    <a href="/terms" class="hover:text-luxury-accent transition-colors">Terms</a>
+                    <a href="/privacy" class="hover:text-luxury-accent transition-colors">Privacy</a>
+                    <a href="/support" class="hover:text-luxury-accent transition-colors">Support</a>
                 </div>
 
                 <!-- Contact -->
@@ -545,12 +545,12 @@
             if (window.scrollY > 80) {
                 navbar.classList.add('py-2', 'bg-luxury-base/95', 'backdrop-blur-md', 'border-luxury-concrete', 'shadow-sm');
                 navbar.classList.remove('py-4', 'bg-transparent', 'border-white/10');
-                navbar.querySelector('img').src = 'assets/logo.png';
+                navbar.querySelector('img').src = '/assets/logo.png';
                 navbar.querySelector('button').classList.replace('text-white', 'text-luxury-text');
             } else {
                 navbar.classList.add('py-4', 'bg-transparent', 'border-white/10');
                 navbar.classList.remove('py-2', 'bg-luxury-base/95', 'backdrop-blur-md', 'border-luxury-concrete', 'shadow-sm');
-                navbar.querySelector('img').src = 'assets/logo-light.png';
+                navbar.querySelector('img').src = '/assets/logo-light.png';
                 navbar.querySelector('button').classList.replace('text-luxury-text', 'text-white');
             }
         });

@@ -45,13 +45,13 @@ const LogoSwitcher = {
 
         // Update logo and menu button based on section
         if (currentSection && this.darkSections.includes(currentSection)) {
-            this.logo.src = 'assets/logo-light.png';
+            this.logo.src = '/assets/logo-light.png';
             if (this.menuBtn) {
                 this.menuBtn.classList.remove('text-luxury-text');
                 this.menuBtn.classList.add('text-luxury-base');
             }
         } else {
-            this.logo.src = 'assets/logo.png';
+            this.logo.src = '/assets/logo.png';
             if (this.menuBtn) {
                 this.menuBtn.classList.remove('text-luxury-base');
                 this.menuBtn.classList.add('text-luxury-text');
