@@ -290,12 +290,12 @@
                     <!-- Step 1 -->
                     <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full crisis-step opacity-0">
                         <div class="hidden md:block md:w-[45%] text-right pr-12">
-                            <h3 class="font-serif text-3xl text-luxury-text mb-2">Tap Crisis Button</h3>
+                            <h3 class="font-serif text-3xl text-luxury-text mb-2">Slide SOS Button</h3>
                             <p class="font-sans text-gray-500 text-sm leading-relaxed">Sliding the SOS button activates emergency mode with haptic confirmation.</p>
                         </div>
                         <div class="crisis-dot absolute left-[-0.5rem] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-luxury-accent bg-luxury-base z-10 transition-colors duration-300"></div>
                         <div class="md:hidden pl-8 w-full">
-                            <h3 class="font-serif text-2xl text-luxury-text mb-2">Tap Crisis Button</h3>
+                            <h3 class="font-serif text-2xl text-luxury-text mb-2">Slide SOS Button</h3>
                             <p class="font-sans text-gray-500 text-sm leading-relaxed">Sliding the SOS button activates emergency mode with haptic confirmation.</p>
                         </div>
                         <div class="hidden md:block md:w-[45%]"></div>
@@ -729,97 +729,6 @@
 
         <!-- SECTION 8: EVERYTHING YOU NEED - STICKY HEADER + MOBILE STACKED CARDS -->
         <section id="features" class="relative bg-luxury-base" aria-label="App features">
-
-            <!-- Mobile Header (visible on mobile only) -->
-            <div class="md:hidden px-8 pt-24 pb-12 text-center">
-                <span class="text-luxury-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">Everything You Need</span>
-                <h2 class="font-serif text-5xl text-luxury-text leading-tight">
-                    Built for<br><span class="italic text-luxury-accent">real life.</span>
-                </h2>
-            </div>
-
-            <!-- Mobile: Stacked Cards (Membership Style) -->
-            <div class="md:hidden max-w-4xl mx-auto px-4 pb-48">
-
-                <!-- Card 01: Health Logging -->
-                <div class="stacked-card sticky top-24 min-h-[55vh] bg-white border border-gray-200 p-8 shadow-2xl rounded-3xl mb-8 transform transition-transform duration-500 hover:-translate-y-2 origin-top" style="z-index: 1;">
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="font-sans text-xs uppercase tracking-[0.2em] text-gray-400">Feature 01</span>
-                        <span class="font-serif text-xl text-luxury-accent">Core</span>
-                    </div>
-                    <h3 class="font-serif text-3xl text-luxury-dark mb-4">Health Logging</h3>
-                    <p class="font-sans text-gray-500 leading-relaxed mb-6">
-                        Track pain levels (1-10), hydration intake, medication adherence, mood, and crisis triggers daily. Build a comprehensive health timeline that helps you identify patterns.
-                    </p>
-                    <ul class="space-y-3 border-t border-gray-100 pt-6">
-                        <li class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Pain Tracking (1-10 scale)
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Hydration Monitoring
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Medication Adherence
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Mood & Trigger Logging
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Card 02: Circle Messaging -->
-                <div class="stacked-card sticky top-32 min-h-[55vh] bg-[#EAEAEA] border border-gray-300 p-8 shadow-2xl rounded-3xl mb-8 transform transition-transform duration-500 hover:-translate-y-2 origin-top" style="z-index: 2;">
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="font-sans text-xs uppercase tracking-[0.2em] text-gray-500">Feature 02</span>
-                        <span class="font-serif text-xl text-luxury-accent">Communication</span>
-                    </div>
-                    <h3 class="font-serif text-3xl text-luxury-dark mb-4">Circle Messaging</h3>
-                    <p class="font-sans text-gray-600 leading-relaxed mb-6">
-                        Send messages and voice notes to your trusted contacts from inside the app. Your Circle of Care receives your updates directly — no separate app account needed on their end.
-                    </p>
-                    <ul class="space-y-3 border-t border-gray-300 pt-6">
-                        <li class="flex items-center gap-3 text-sm text-gray-700">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Group & Direct Chats
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-700">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Instant Notifications
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Card 03: Task Delegation -->
-                <div id="dark-card" class="stacked-card sticky top-40 min-h-[55vh] bg-luxury-dark border border-gray-800 p-8 shadow-2xl rounded-3xl mb-8 transform transition-transform duration-500 hover:-translate-y-2 origin-top text-white" style="z-index: 3;">
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="font-sans text-xs uppercase tracking-[0.2em] text-gray-500">Feature 03</span>
-                        <span class="font-serif text-xl text-luxury-accent">Coordination</span>
-                    </div>
-                    <h3 class="font-serif text-3xl text-white mb-4">Stay Organised</h3>
-                    <p class="font-sans text-gray-400 leading-relaxed mb-6">
-                        Keep on top of your care between appointments. Log medications taken, track upcoming doses, and message your Circle of Care directly from the app.
-                    </p>
-                    <ul class="space-y-3 border-t border-gray-800 pt-6">
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Medication Scheduling
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Medication Adherence Tracking
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <div class="w-1.5 h-1.5 bg-luxury-accent rounded-full"></div>
-                            Push Notifications
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
 
             <!-- Desktop: Sticky Left / Scrolling Right Layout -->
             <div class="hidden md:flex flex-row">
