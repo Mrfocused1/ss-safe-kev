@@ -4,6 +4,10 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/the-problem", "destination": "/problem", "permanent": true },
+    { "source": "/gala-event",  "destination": "/gala",    "permanent": true }
+  ],
   "functions": {
     "api/**/*.js": {
       "maxDuration": 10
